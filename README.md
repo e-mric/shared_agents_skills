@@ -30,3 +30,7 @@ data, and date checks of tool-specific commands and external references. Review
 Markdown structure, links and factual claims when changing documentation.
 
 See [the initial audit](docs/audits/2026-10-17.md) for publication checks and limitations.
+
+## License
+
+Released under the [MIT License](LICENSE).
