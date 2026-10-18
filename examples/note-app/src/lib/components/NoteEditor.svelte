@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { coverFor } from '../covers.mjs';
   import { createNotesStore, STORAGE_KEY, type Note, type Draft } from '../notes.mjs';
   let { active = false, iteration = 0, onEvidence = (_key: string) => {}, onDirty = (_dirty: boolean) => {} }: { active?: boolean; iteration: number; onEvidence?: (key: string) => void; onDirty?: (dirty: boolean) => void } = $props();
   const store = createNotesStore(() => window.localStorage);
@@ -10,6 +11,9 @@
   let loadFailure = $state('');
   let ready = $state(false);
   let armed = $state(false);
+  let search = $state('');
+  const filteredNotes = $derived(notes.filter(note => `${note.title} ${note.body}`.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())));
+  const editorCover = $derived(coverFor(original ?? { title: '', body: '' }));
   let dialog: HTMLDialogElement;
   let titleField: HTMLInputElement;
   let pending: (() => void) | null = null;
@@ -93,17 +97,29 @@
 </script>
 
 <svelte:window onkeydown={shortcut} />
-<div class="note-app" class:writing-only={iteration === 0}>
-  <header class="note-top"><span>Notes</span><button onclick={newNote} disabled={!ready}>+ New</button></header>
+<div class="note-app" class:writing-only={iteration === 0} class:illustrated={iteration >= 1} class:refined={iteration >= 3}>
+  <header class="note-top"><span class="app-brand"><span aria-hidden="true">⌁</span> marginal</span><span class="app-tagline">A little room for thought.</span><button onclick={newNote} disabled={!ready}>+ New note</button></header>
   {#if loadFailure}<div class="note-alert" role="alert"><p>{loadFailure}</p><button onclick={load}>Try opening notes again</button></div>{/if}
   <div class="note-workspace">
     {#if iteration >= 1}
       <nav class="note-list" aria-label="Saved notes">
-        {#if !notes.length}<p class="empty-list">Your saved notes<br>will appear here.</p>{/if}
-        {#each notes as note (note.id)}
-          <button class:chosen={draft.id === note.id} aria-current={draft.id === note.id ? 'true' : undefined} onclick={() => { if (note.id !== draft.id) navigate(() => open(note)); }}><strong>{title(note)}</strong><span>{new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' }).format(new Date(note.updatedAt))}</span></button>
-        {/each}
-        <span class="storage-caption">In this browser only</span>
+        <div class="library-heading"><h2>Your notes</h2><span>{notes.length}</span></div>
+        <label class="sr-only" for="note-search">Search notes</label>
+        <input id="note-search" class="note-search" type="search" bind:value={search} placeholder="Search your thoughts…" />
+        <div class="note-cards">
+          {#if !notes.length}
+            <div class="empty-library"><img src="/illustrations/paper-boat.png" alt="" /><p>A thought starts here.</p><span>Write your first note, then save it to keep it here.</span></div>
+          {:else if !filteredNotes.length}
+            <p class="empty-list">No matching notes.<br>Try another search.</p>
+          {/if}
+          {#each filteredNotes as note (note.id)}
+            <button class="note-card" class:chosen={draft.id === note.id} aria-current={draft.id === note.id ? 'true' : undefined} onclick={() => { if (note.id !== draft.id) navigate(() => open(note)); }}>
+              <img class="note-cover" src={coverFor(note)} alt="" />
+              <span class="note-card-copy"><strong>{title(note)}</strong><span class="note-excerpt">{note.body.trim() || 'A little space for your next thought.'}</span><time datetime={note.updatedAt}>{new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' }).format(new Date(note.updatedAt))}</time></span>
+            </button>
+          {/each}
+        </div>
+        <span class="storage-caption">Stored in this browser only<small>Covers selected locally from note text.</small></span>
       </nav>
     {/if}
     <section class="note-editor" aria-label="Note editor">
@@ -114,6 +130,7 @@
       {#if failure}
         <div class="note-alert" role="alert"><strong>Your text is still here.</strong><p>{failure.message}</p><div>{#if !['corrupt', 'conflict'].includes(failure.code ?? '')}<button onclick={save} disabled={!hasText}>Try saving again</button>{/if}<button onclick={download}>Download draft</button></div></div>
       {/if}
+      {#if iteration >= 2}<div class="editor-cover"><img src={editorCover} alt="" /></div>{/if}
       <label class="sr-only" for="note-title">Note title</label><input id="note-title" bind:this={titleField} bind:value={draft.title} disabled={!ready} placeholder="Untitled note" maxlength="160" autocomplete="off" />
       <label class="sr-only" for="note-body">Note text</label><textarea id="note-body" bind:value={draft.body} disabled={!ready} placeholder="What’s on your mind?" spellcheck="true"></textarea>
       <div class="note-word-count">{words} {words === 1 ? 'word' : 'words'}</div>

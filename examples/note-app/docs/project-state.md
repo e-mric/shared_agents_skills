@@ -59,6 +59,25 @@ The source now lives at `examples/note-app` in shared_agents_skills. The user au
 committing and pushing the presentation and optional team guide on 2026-10-18.
 The browser preview remains local; GitHub publication does not deploy the app.
 
+## Illustrated implementation · 2026-10-18
+
+The approved visual proposal is now implemented as a responsive illustrated library,
+matching editor covers and an editorial typography pass. Save introduces searchable
+cards; Recover reveals the panorama; Review refines typography and spacing. Drafts
+remain in the same editor. The two generated illustrations live in
+`static/illustrations/`; prompts and references are in
+[the design notes](design/illustrated-covers.md). Selection uses local keyword rules
+against saved note text; there is no runtime generation, model bill or transmission.
+Existing storage and note schemas are unchanged.
+
+Verification: Svelte diagnostics passed without warnings, 23 automated tests passed,
+and the production build passed. Desktop browser checks observed a Write draft
+surviving the Save chapter, successful saving and reload with exact multiline text,
+matching travel artwork, no-results search, failed-save draft retention, retry,
+and reopening an existing note. A long library scrolls internally without hiding card
+titles. [Final screenshot](evidence/illustrated-workflow.png).
+No additional mobile or assistive-technology coverage is claimed.
+
 ## Repository integration and palette
 
 The user selected a blueprint palette on 2026-10-18. Alice Blue forms the page,

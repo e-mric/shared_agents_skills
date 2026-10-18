@@ -43,3 +43,11 @@ delegate work. Prices are dated illustrative calculations with stated token assu
 not this session’s bill or a conversion to subscription allowance. The baseline designs
 are generated proposals. Browser checks cover the local test environment, not every
 browser, assistive technology, mobile device or real-user study.
+# Illustrated reveal
+
+Write starts plain. Save adds illustrated cards and search. Recover adds the matching
+editor cover. Review applies the editorial body type and final spacing.
+For the cover selection demo, save a note titled “Weekend wanderings” with a walking
+plan: the local rule selects the landscape. Ordinary reflections use the boat.
+Edit without saving to show that the cover stays stable. No runtime image generation
+or external model calls occur; this is selection from two pre-generated illustrations.

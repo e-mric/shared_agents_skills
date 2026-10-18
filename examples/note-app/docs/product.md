@@ -7,8 +7,8 @@ Audience: a presenter explaining work with coding agents, and people capturing s
 Milestone: create, edit, explicitly save and reopen plain-text notes in one browser.
 No accounts, collaboration, rich text or device sync in this milestone.
 
-Implementation choices by the builder: dependency-free web app, browser storage,
-app name “Marginal”, paper tones, a quiet green accent and a large serif writing area.
+Implementation choices: SvelteKit, browser storage, app name “Marginal”,
+the user-selected blueprint blues and a large serif writing area.
 The notebook reference gives writing visual priority. Clear save feedback supports trust.
 These choices implement the authorized demo scope; usefulness to a broader market is untested.
 
@@ -53,6 +53,11 @@ Additional acceptance criteria:
 13. Document tabs, role starters, scope exploration and acceptance criteria are interactive.
     Review checkboxes are presenter observations, not automatic tests.
 14. A downloadable handoff records observed browser interactions and limitations.
+15. Illustrations appear progressively: library covers in Save, a matching editor cover
+    in Recover, and final editorial typography in Review. Search filters saved notes.
+16. Select from the pre-generated cover library locally using saved note text, with
+    a default for unmatched themes. No runtime generation or note transmission.
+    Covers stay stable during editing and failed saves, updating after successful save.
 
 Earlier builder choices of a dependency-free server and a normal app-first screen
 are superseded by the explicit SvelteKit and interactive presentation requests.

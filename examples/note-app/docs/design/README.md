@@ -1,5 +1,8 @@
 # Design direction and references
 
+The latest [illustrated implementation and asset prompts](illustrated-covers.md) add
+locally selected covers and progressive visual refinement to the live app.
+
 2026-10-18. User requested a minimal, interactive SvelteKit presentation with a storyboard,
 visible iterations, a naive-prompt comparison and then scrollytelling.
 

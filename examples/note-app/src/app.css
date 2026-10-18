@@ -27,3 +27,49 @@
 .current .mini-frame{border-top-color:var(--highlight)}
 .note-list>button.chosen{border-left-color:var(--highlight)}
 .mini-top{background:color-mix(in srgb,var(--cerulean) 20%,white)}
+
+/* Illustrated library: writing -> covers -> panorama -> final editorial pass. */
+.note-top { gap: 14px; }
+.app-brand { white-space: nowrap; }
+.app-brand > span { color: var(--accent); font-size: 27px; vertical-align: middle; }
+.app-tagline { font: 10px/1.5 inherit; color: var(--muted); }
+.note-top button { font-family: inherit; background: var(--accent); color: white; padding: 8px 12px; border-radius: 5px; font-size: 11px; white-space: nowrap; }
+.note-top button:hover:not(:disabled) { color: white; background: var(--ink); }
+.illustrated .note-workspace { grid-template-columns: minmax(190px, 39%) minmax(0, 1fr); }
+.illustrated .note-list { padding: 18px 14px; background: #f5f9fa; gap: 13px; }
+.library-heading { display: flex; align-items: baseline; gap: 9px; }
+.library-heading h2 { font: 400 21px/1.3 Georgia, serif; margin: 0; }
+.library-heading > span { font-size: 10px; color: var(--muted); }
+.note-search { width: 100%; border: 1px solid var(--line); border-radius: 5px; background: white; padding: 9px; font-size: 11px; color: var(--ink); }
+.note-search::placeholder { color: var(--muted); }
+.note-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; align-content: start; }
+.note-card { text-align: left; padding: 0; border: 1px solid #d2e1e7; border-radius: 6px; background: white; overflow: hidden; min-width: 0; }
+.note-card.chosen { outline: 2px solid var(--highlight); outline-offset: -2px; background: white; }
+.note-card:hover { border-color: var(--cerulean); }
+.note-cover { display: block; width: 100%; height: 78px; object-fit: cover; }
+.note-card-copy { display: block; padding: 10px; }
+.note-list .note-card strong { font: 400 14px/1.25 Georgia, serif; white-space: normal; overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.note-excerpt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 10px; line-height: 1.6; color: var(--muted); margin: 7px 0 12px; overflow-wrap: anywhere; }
+.note-card time { font-size: 9px; color: var(--muted); }
+.storage-caption { padding: 12px 0 0; font-size: 9px; line-height: 1.7; }
+.storage-caption small { display: block; font-size: 8px; }
+.empty-library { grid-column: 1 / -1; padding-bottom: 16px; }
+.empty-library img { width: 100%; height: 110px; object-fit: cover; border-radius: 5px; }
+.empty-library p { font: 19px/1.3 Georgia, serif; margin: 14px 0 8px; }
+.empty-library > span { font-size: 11px; line-height: 1.7; color: var(--muted); }
+.editor-cover { margin: 0 -1px 20px; flex-shrink: 0; }
+.editor-cover img { width: 100%; height: 115px; display: block; object-fit: cover; border-radius: 4px; }
+.note-editor input { overflow: hidden; text-overflow: ellipsis; }
+.refined .note-editor { padding: 19px 5% 20px; }
+.refined .note-editor textarea { font-family: Georgia, serif; color: var(--ink); line-height: 1.95; }
+.refined .editor-cover img { height: 135px; }
+.refined .note-card { border-radius: 8px; }
+@media (min-width: 1100px) { .presentation-main { grid-template-columns: minmax(230px, .7fr) minmax(0, 2.1fr); gap: 3%; } }
+@media (max-width: 1250px) { .note-cards { grid-template-columns: 1fr; } .note-cover { height: 85px; } .app-tagline { display: none; } }
+@media (max-width: 760px) { .illustrated .note-workspace { grid-template-columns: minmax(125px, 35%) minmax(0, 1fr); } .illustrated .note-list { padding: 14px 9px; } .library-heading h2 { font-size: 18px; } .note-card-copy { padding: 8px; } .note-list .note-card strong { font-size: 13px; } .note-excerpt { font-size: 9px; } .note-cover { height: 70px; } .note-search { font-size: 10px; padding: 8px 5px; } .editor-cover img, .refined .editor-cover img { height: 95px; } .refined .note-editor { padding: 15px; } .note-top button { font-size: 10px; } }
+.illustrated .note-workspace { min-height: 430px; max-height: 520px; }
+.illustrated .note-list { overflow: hidden; }
+.note-cards { min-height: 0; overflow-y: auto; padding: 2px; flex: 1; scrollbar-width: thin; }
+@media (max-width: 760px) { .illustrated .note-workspace { min-height: 440px; max-height: 540px; } }
+.note-cards { grid-auto-rows: max-content; align-items: start; }
+.note-card { min-height: max-content; }
