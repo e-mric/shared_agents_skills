@@ -8,3 +8,9 @@
 !.env.example
 *.pem
 *.key
+
+# Example application dependencies and generated output
+node_modules/
+.svelte-kit/
+build/
+coverage/

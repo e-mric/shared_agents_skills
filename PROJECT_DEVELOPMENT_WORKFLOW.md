@@ -149,6 +149,13 @@ changes. Use research, design, implementation and review methods at the relevant
 Delegate only when the user or applicable instructions authorize it. Message another chat
 only with explicit user authorization.
 
+At project setup, offer a single-agent or delegated workflow when relevant. Ask once
+for the user's preference, priorities and usage/spending limits, then reuse that choice.
+Keep role assignments model-agnostic and verify host capabilities before promising them.
+Use [optional agent teams and cost planning](docs/optional-agent-teams.md) for role
+boundaries, subscription/API estimates and a dated Codex example. Keep vendor-specific
+models and prices in that optional guide; delegation remains opt-in.
+
 Improve routing when recurring mistakes reveal a need. Create custom skills after a
 workflow proves repeatable; check existing capabilities before adding a plugin. Connect
 tools for concrete needs and schedule work only when requested.

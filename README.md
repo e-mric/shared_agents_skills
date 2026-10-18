@@ -7,9 +7,29 @@ Reusable development guidance for working with coding agents across projects.
 - [Project development workflow](PROJECT_DEVELOPMENT_WORKFLOW.md): a setup request
   for project instructions, shared documentation, skill selection, verification and
   focused chat starters. Adapt it to the target project's size and conventions.
+- [Optional agent teams and cost planning](docs/optional-agent-teams.md): choose
+  single-agent or delegated work, assign roles and compare supported cost estimates.
 
-This repository currently contains a standalone workflow document. It is not an
-installable skill package or plugin, and cloning it changes no agent configuration.
+The guidance is tool- and model-agnostic. The optional interactive example uses
+SvelteKit to demonstrate it. Cloning this repository changes no agent configuration.
+
+## Interactive presentation
+
+[Marginal](examples/note-app/README.md) explains the workflow through 12 interactive
+chapters. A pinned note app gains writing, saving and recovery as the story progresses.
+It includes an illustrative naive-prompt comparison, optional team/cost examples and
+presenter cues. The [presentation script](examples/note-app/docs/demo.md) guides a live demo.
+
+With Node 22.12 or newer:
+
+```sh
+cd examples/note-app
+npm ci
+npm run dev
+```
+
+Open [the local presentation](http://127.0.0.1:4173/). See the example's README for
+production preview commands, verification and browser-storage limitations.
 
 ## Use the workflow
 
