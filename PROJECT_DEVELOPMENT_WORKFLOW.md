@@ -1,6 +1,6 @@
 # Reusable project development workflow
 
-Version: 2026-10-17. Use this as a setup request in any project, adapted to that
+Version: 2026-10-18. Use this as a setup request in any project, adapted to that
 project's scale, stack, risks and existing conventions. It is a reusable instruction
 document, not an automatically installed skill or a global configuration change.
 
@@ -164,6 +164,27 @@ Before complex changes establish goal, relevant context, constraints/exclusions,
 observable acceptance criteria, implementation checkpoints and verification approach.
 Deliver one bounded, end-to-end outcome at a time.
 
+For substantial product/UI work, record a brief intent in the owning product/design
+doc: the user's situation, desired outcome, intended feeling and distinctive choices,
+with concrete references and reasons. Translate accepted intent into reusable components,
+complete flows and examples where useful. Explore a few different approaches only when
+a material uncertainty warrants it; revise assumptions and remove unnecessary complexity
+as evidence emerges. Spend some time saved by AI on a better experience.
+
+Make experience criteria observable:
+
+- After important actions, users can tell what happened, the current status and what
+  to do next; provide cancellation or undo where appropriate.
+- Across the complete journey, terminology, navigation, limits and saved state agree.
+- In affected loading, empty, error and interrupted states, preserve user work where
+  possible and provide an actionable recovery path.
+
+Name an experience reviewer (the builder can own this in a small project). They walk
+the complete task as a user, assess it against the intent and record material gaps.
+Technical checks and experience review both contribute to completion; a polished screen
+alone is insufficient evidence. Keep exploration patient and flexible while preserving
+engineering checks and accepted constraints.
+
 Test meaningful business rules, application decisions, infrastructure contracts,
 integration wiring and user journeys where affected. Add regression coverage for bugs.
 Avoid tests that only mirror implementation; control time and external dependencies
@@ -180,8 +201,9 @@ live integrations and real-user observations. For documentation-only work, verif
 factual accuracy, consistency and formatting without unrelated application builds.
 
 Done means accepted behaviour is implemented, appropriate checks pass, durable docs are
-current, unrelated work is preserved and material limitations are disclosed. If blocked,
-record the exact dependency and actionable next step rather than implying completion.
+current, affected experience criteria are reviewed, unrelated work is preserved and
+material limitations are disclosed. If blocked, record the exact dependency and
+actionable next step rather than implying completion.
 
 ## 7. Use four focused chat categories
 
@@ -201,7 +223,8 @@ Read the project's agent guidance, wiki index and current project state. Help re
 research and design documents plus current implementation. Separate facts, hypotheses,
 proposals and accepted decisions. Connect the user problem to one small milestone,
 scope/exclusions, journey, interaction states, accessibility and success criteria.
-Explain how design choices serve users. Provide reviewable flows/visuals as useful;
+Define intended feeling and distinctive choices with references and reasons; identify
+the experience reviewer. Explain how design choices serve users. Provide flows/visuals as useful;
 prototype only for a bounded uncertainty. Ask focused material questions. Record accepted
 decisions in the owning docs and leave a handoff. Done when the next outcome and its
 experience/acceptance criteria are clear; proposals remain proposals until accepted.
@@ -226,7 +249,8 @@ Read the project's agent guidance, wiki index and current state. Deliver [one ac
 feature/fix] against [spec/ticket] in [branch/worktree]. Inspect status and preserve
 unrelated work. Establish constraints, acceptance criteria, checkpoints and checks.
 Keep architecture/dependencies coherent; test meaningful behaviour and regressions.
-Review the diff, run appropriate focused/integration checks and update owning docs.
+For UI changes, carry accepted intent through the complete flow and recovery states.
+Review the diff, run appropriate checks and experience review, and update owning docs.
 Done when the accepted outcome works with scoped evidence; report failures/unverified
 areas and leave an actionable handoff for remaining work. Do not assume other chats'
 uncommitted files are present or authorize new requirements without a decision.
@@ -238,8 +262,10 @@ uncommitted files are present or authorize new requirements without a decision.
 Read the project's agent guidance, wiki index and current state. Independently evaluate
 [journey/criteria] on [build/revision/environment/test data]. Confirm access and preserve
 user data. Record reproducible steps, expected/observed behaviour, severity, evidence
-and pass/fail/inconclusive per criterion. Include affected failure, cancellation and
-accessibility paths. Distinguish mocked, sandbox, live and participant evidence; identify
+and pass/fail/inconclusive per criterion. Check feedback, next steps, undo where appropriate
+and consistency across the full task, including affected failure and accessibility paths. Safely
+simulate interruptions with test data to check work preservation and recovery.
+Distinguish mocked, sandbox, live and participant evidence; identify
 checks requiring a human, device or external access. File actionable findings and update
 the testing handoff. Done when each criterion has a scoped result or explicit gap.
 Evaluation does not authorize production fixes, deployments or contacting people.
@@ -274,3 +300,13 @@ Finish with what changed, how it was checked, remaining gaps/open decisions, how
 chats/worktrees receive context, and the recommended first product decision. Keep the
 report concise and link the useful entry files. The purpose is clearer progress and
 reliable handoffs, not more process.
+
+## Design influences
+
+Lessons incorporated on 2026-10-18: [Katie Dill's talk](https://youtu.be/GLvFTMtw4Jk),
+read via a [published caption transcript](https://prepublish.ai/youtube-transcript/GLvFTMtw4Jk);
+[Tim Gabe's video](https://youtu.be/8EAYZe6y3I8), accessed through a user-provided
+[Gemini summary](https://share.gemini.google/aNounSIExP48), not independently verified
+against the video; and [Rick Rubin's The Way of Code](https://www.thewayofcode.com/).
+These inform practical judgment, not empirical guarantees. Rubin's philosophy informs
+simplicity, patience and openness to revision alongside engineering checks.
