@@ -106,3 +106,18 @@ The recovery pane now scrolls independently to contain longer errors without lib
 content overlapping the footer. [Expanded library screenshot](evidence/expanded-illustration-library.png).
 The user authorized committing and pushing these changes on 2026-10-18.
 No new mobile or assistive-technology verification is claimed.
+
+## Impeccable refinement · 2026-10-18
+
+Applied Impeccable 4.6.0 to readability and responsive layout, preserving the approved
+visual direction. Controls and body text are larger, titles wrap, and the stacked
+library/editor with explicit chapter navigation now applies through 960px. Storage,
+local cover matching and the mounted editor are unchanged.
+
+All 27 tests, Svelte diagnostics and production build passed. Browser checks covered
+390px, 820px and the default desktop viewport, including long-title editing, save
+failure/retry, reload and reopening. See the [review and evidence](design/impeccable-review.md)
+for source revision, detector findings and limits. This supersedes the earlier absence
+of narrow-viewport verification; physical devices and screen readers remain untested.
+The shared workflow now links frontend-design, Impeccable and Humanizer as optional,
+agent-agnostic resources. The user authorized committing and pushing the combined change.

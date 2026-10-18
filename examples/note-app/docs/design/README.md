@@ -2,6 +2,8 @@
 
 The latest [illustrated implementation and asset prompts](illustrated-covers.md) add
 locally selected covers and progressive visual refinement to the live app.
+The [Impeccable review](impeccable-review.md) records the subsequent readability and
+responsive pass, upstream revision and verification limits.
 
 2026-10-18. User requested a minimal, interactive SvelteKit presentation with a storyboard,
 visible iterations, a naive-prompt comparison and then scrollytelling.

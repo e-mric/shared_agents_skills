@@ -15,7 +15,7 @@
   const filteredNotes = $derived(notes.filter(note => `${note.title} ${note.body}`.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())));
   const editorCover = $derived(coverFor(original ?? { title: '', body: '' }));
   let dialog: HTMLDialogElement;
-  let titleField: HTMLInputElement;
+  let titleField: HTMLTextAreaElement;
   let pending: (() => void) | null = null;
   const dirty = $derived(draft.title !== (original?.title ?? '') || draft.body !== (original?.body ?? ''));
   const hasText = $derived(!!(draft.title.trim() || draft.body.trim()));
@@ -98,7 +98,7 @@
 
 <svelte:window onkeydown={shortcut} />
 <div class="note-app" class:writing-only={iteration === 0} class:illustrated={iteration >= 1} class:refined={iteration >= 3}>
-  <header class="note-top"><span class="app-brand"><span aria-hidden="true">⌁</span> marginal</span><span class="app-tagline">A little room for thought.</span><button onclick={newNote} disabled={!ready}>+ New note</button></header>
+  <header class="note-top"><span class="app-brand"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20 16 9M8 17c-2-6 2-12 12-13 0 9-4 15-12 13Z"/><path d="m12 13 1-6m-1 6 6-1"/></svg> marginal</span><span class="app-tagline">A little room for thought.</span><button onclick={newNote} disabled={!ready}>+ New note</button></header>
   {#if loadFailure}<div class="note-alert" role="alert"><p>{loadFailure}</p><button onclick={load}>Try opening notes again</button></div>{/if}
   <div class="note-workspace">
     {#if iteration >= 1}
@@ -131,8 +131,8 @@
         <div class="note-alert" role="alert"><strong>Your text is still here.</strong><p>{failure.message}</p><div>{#if !['corrupt', 'conflict'].includes(failure.code ?? '')}<button onclick={save} disabled={!hasText}>Try saving again</button>{/if}<button onclick={download}>Download draft</button></div></div>
       {/if}
       {#if iteration >= 2}<div class="editor-cover"><img src={editorCover} alt="" /></div>{/if}
-      <label class="sr-only" for="note-title">Note title</label><input id="note-title" bind:this={titleField} bind:value={draft.title} disabled={!ready} placeholder="Untitled note" maxlength="160" autocomplete="off" />
-      <label class="sr-only" for="note-body">Note text</label><textarea id="note-body" bind:value={draft.body} disabled={!ready} placeholder="What’s on your mind?" spellcheck="true"></textarea>
+      <label class="sr-only" for="note-title">Note title</label><textarea class="note-title" rows="2" id="note-title" bind:this={titleField} bind:value={draft.title} disabled={!ready} placeholder="Untitled note" maxlength="160" autocomplete="off"></textarea>
+      <label class="sr-only" for="note-body">Note text</label><textarea class="note-body" id="note-body" bind:value={draft.body} disabled={!ready} placeholder="What’s on your mind?" spellcheck="true"></textarea>
       <div class="note-word-count">{words} {words === 1 ? 'word' : 'words'}</div>
     </section>
   </div>

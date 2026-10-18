@@ -9,6 +9,8 @@ Reusable development guidance for working with coding agents across projects.
   focused chat starters. Adapt it to the target project's size and conventions.
 - [Optional agent teams and cost planning](docs/optional-agent-teams.md): choose
   single-agent or delegated work, assign roles and compare supported cost estimates.
+- [Optional design and writing skills](docs/optional-design-writing-skills.md): choose
+  frontend-design, Impeccable or Humanizer when visual or editorial refinement helps.
 
 The guidance is tool- and model-agnostic. The optional interactive example uses
 SvelteKit to demonstrate it. Cloning this repository changes no agent configuration.

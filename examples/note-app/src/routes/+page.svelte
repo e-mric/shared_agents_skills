@@ -97,7 +97,7 @@
       }
     } catch { /* Invalid story state never changes notes. */ }
     ready = true;
-    const media = window.matchMedia('(max-width: 760px)');
+    const media = window.matchMedia('(max-width: 960px)');
     function updateLayout() { mobile = media.matches; }
     updateLayout();
     const frame = requestAnimationFrame(() => {

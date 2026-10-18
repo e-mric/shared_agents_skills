@@ -130,6 +130,11 @@ Select methods by the actual task:
 Discover the available `SKILL.md` instructions; names/version details can change.
 This is a menu of methods, not a checklist to execute for every task.
 
+For product-specific visual direction, interface refinement or editorial cleanup, see
+[optional design and writing skills](docs/optional-design-writing-skills.md):
+frontend-design, Impeccable and Humanizer. Select by need, verify host support and
+preserve the accepted brief. None is a prerequisite or installed by this workflow.
+
 ## 5. Keep skill selection and permissions coherent
 
 Follow explicitly requested and otherwise required skills. For discretionary selection,
