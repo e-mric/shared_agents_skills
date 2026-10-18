@@ -73,3 +73,6 @@
 @media (max-width: 760px) { .illustrated .note-workspace { min-height: 440px; max-height: 540px; } }
 .note-cards { grid-auto-rows: max-content; align-items: start; }
 .note-card { min-height: max-content; }
+/* Keep long recovery messages inside the writing pane. */
+.illustrated .note-workspace { height: clamp(440px, 55svh, 520px); flex: 0 0 auto; grid-template-rows: minmax(0, 1fr); }
+.illustrated .note-editor { min-height: 0; overflow-y: auto; scrollbar-width: thin; }

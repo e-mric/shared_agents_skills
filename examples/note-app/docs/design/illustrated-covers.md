@@ -19,8 +19,20 @@ The library scrolls internally on smaller desktop canvases.
 
 ## Local selection
 
-`src/lib/covers.mjs` matches simple travel/walking keywords against title and body.
-Matches receive the landscape; everything else receives the boat. This is a deliberately
+`src/lib/covers.mjs` selects from five themes using local whole-word matches:
+
+- Travel and walking: wandering path.
+- Reading and learning: reading corner.
+- Ideas and creativity: folded paper stars.
+- Recipes and cooking: kitchen table.
+- Unmatched notes: paper boat.
+
+Title matches take priority over body matches. Within a field, the theme with the most
+distinct matching words wins; ties follow the order above. Repeated words cannot
+inflate a score. Matching ignores case, accents and punctuation and includes a small
+English/French vocabulary. This is a heuristic, not language understanding.
+Existing notes can acquire a new cover when the app reloads under the expanded rules;
+no stored content is migrated. This is a deliberately
 small rule-based library, not semantic AI or local image generation. No note text is
 sent to a service, no runtime model calls occur and no per-note generation fee applies.
 Artwork was generated once during development.
@@ -44,3 +56,5 @@ Create a wide panoramic editorial illustration for a minimal note app cover, no 
 Landscape prompt:
 
 A wide panoramic editorial illustration only, no text or interface. A winding white walking path through layered blue hills, delicate tall grasses, wildflowers and navy botanical branches at edges, pale sky, distant tiny cypress trees. Refined tactile cut-paper collage and botanical ink with paper grain, calm, spacious, independent design journal illustration. Strict palette #13293D navy, #006494 Baltic blue, #247BA0 cerulean, #E8F1F2 pale blue and white. Landscape 3:1 composition, coherent with a poetic paper-boat note app illustration series. No letters, words, border or watermark.
+
+Additional asset prompts: [reading, ideas and cooking](additional-theme-prompts.md).

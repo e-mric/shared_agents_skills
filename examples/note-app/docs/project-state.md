@@ -90,3 +90,19 @@ and `npm run build` succeeded from `examples/note-app`. Main text/action color p
 measured at least 4.5:1 contrast. A browser reload from the new preview preserved the
 saved notes, and chapter navigation reached Recovery with the blueprint theme applied.
 [Current palette screenshot](evidence/blueprint-palette.png).
+
+## Expanded cover library · 2026-10-18
+
+Added reading/learning, ideas/creativity and cooking/recipes to the original travel and
+reflective covers. Matching is local, accent-insensitive and based on whole words;
+titles outrank bodies, distinct word counts resolve mixed themes, stable library order
+resolves ties. No runtime generation or note transmission. No storage migration.
+Asset prompts: [additional themes](design/additional-theme-prompts.md).
+
+All 27 tests, Svelte diagnostics and production build passed. Desktop browser verified
+all three new images in both card and editor, persistence after reload, the old cover
+remaining during a failed save, and the new cover appearing after successful retry.
+The recovery pane now scrolls independently to contain longer errors without library
+content overlapping the footer. [Expanded library screenshot](evidence/expanded-illustration-library.png).
+The user authorized committing and pushing these changes on 2026-10-18.
+No new mobile or assistive-technology verification is claimed.

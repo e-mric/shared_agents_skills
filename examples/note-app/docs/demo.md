@@ -50,4 +50,7 @@ editor cover. Review applies the editorial body type and final spacing.
 For the cover selection demo, save a note titled “Weekend wanderings” with a walking
 plan: the local rule selects the landscape. Ordinary reflections use the boat.
 Edit without saving to show that the cover stays stable. No runtime image generation
-or external model calls occur; this is selection from two pre-generated illustrations.
+or external model calls occur; this is selection from five pre-generated illustrations.
+
+Theme examples: save “Books to read”, “Creative ideas” or “Dinner recipes”.
+The title takes priority if the body mentions another theme.
