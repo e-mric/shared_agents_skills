@@ -135,10 +135,10 @@ no policy or signals, so no CSP changes were needed. No live injection, helper s
 global installation or hooks were enabled. Future live use needs the dev server with
 HMR; this init did not validate the interactive live picker.
 
-No standing build-path preference is recorded yet. App screens and documents use
-code-first in this session; the separate landing/showcase preference remains unset
-until the user chooses. Runtime artifacts and personal overrides are ignored, while
-the shared live configuration is tracked.
+The user subsequently selected code-first for future landing/showcase surfaces.
+The confirmed preference is stored in `.impeccable/config.json`; app screens and
+documents also use code-first. Runtime artifacts and personal overrides are ignored,
+while the shared configurations are tracked.
 
 Verified product schema, local links, live-config JSON and preservation of acceptance
 criteria. All 27 tests, Svelte checks and production build passed. Documentation and
