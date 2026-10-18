@@ -121,3 +121,26 @@ for source revision, detector findings and limits. This supersedes the earlier a
 of narrow-viewport verification; physical devices and screen readers remain untested.
 The shared workflow now links frontend-design, Impeccable and Humanizer as optional,
 agent-agnostic resources. The user authorized committing and pushing the combined change.
+
+## Impeccable init · 2026-10-18
+
+Completed the 4.6.0 init flow using the established user context. The existing
+`docs/product.md` remains the single product authority and now includes the schema-1
+marker, web platform, users, purpose, positioning, operating context, constraints,
+brand commitments, evidence and principles. All sixteen acceptance criteria and the
+existing milestone history were preserved. No replacement design or new product claims.
+
+Prepared `.impeccable/live/config.json` for the SvelteKit shell. `detect-csp` returned
+no policy or signals, so no CSP changes were needed. No live injection, helper server,
+global installation or hooks were enabled. Future live use needs the dev server with
+HMR; this init did not validate the interactive live picker.
+
+No standing build-path preference is recorded yet. App screens and documents use
+code-first in this session; the separate landing/showcase preference remains unset
+until the user chooses. Runtime artifacts and personal overrides are ignored, while
+the shared live configuration is tracked.
+
+Verified product schema, local links, live-config JSON and preservation of acceptance
+criteria. All 27 tests, Svelte checks and production build passed. Documentation and
+configuration only: no additional visual or browser-journey evidence is claimed.
+The user authorized committing and pushing this initialization.

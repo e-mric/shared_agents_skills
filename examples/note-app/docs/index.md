@@ -1,7 +1,7 @@
 # Project guide
 
 - [Current state and handoff](project-state.md)
-- [Product intent and acceptance criteria](product.md)
+- [Product context and acceptance criteria](product.md)
 - [Storage decision and source evidence](research.md)
 - [Live presentation script](demo.md)
 - [Design references and generated concepts](design/README.md)

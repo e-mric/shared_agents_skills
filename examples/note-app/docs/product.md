@@ -1,16 +1,95 @@
-# Product intent
+# Marginal product
 
-2026-10-18. User request: build the simple note app as a live demonstration of the
-[shared workflow](https://github.com/e-mric/shared_agents_skills/blob/4ff6194/PROJECT_DEVELOPMENT_WORKFLOW.md).
+<!-- impeccable:product-schema 1 -->
 
-Audience: a presenter explaining work with coding agents, and people capturing short notes.
-Milestone: create, edit, explicitly save and reopen plain-text notes in one browser.
-No accounts, collaboration, rich text or device sync in this milestone.
+Initialized with Impeccable 4.6.0 on 2026-10-18 from the user's established brief,
+accepted design decisions and repository evidence. This app-specific record remains
+at its existing path; the shared repository's workflow stays agent-agnostic.
 
-Implementation choices: SvelteKit, browser storage, app name “Marginal”,
-the user-selected blueprint blues and a large serif writing area.
-The notebook reference gives writing visual priority. Clear save feedback supports trust.
-These choices implement the authorized demo scope; usefulness to a broader market is untested.
+## Platform
+
+web
+
+## Users
+
+Primary user: a presenter explaining a practical development workflow to others.
+The audience follows the decisions and tries the progressively revealed note app.
+The note-taking journey serves people capturing short thoughts in one browser.
+
+## Product Purpose
+
+Explain the [shared development workflow](../../../PROJECT_DEVELOPMENT_WORKFLOW.md)
+through an interactive presentation that becomes a functioning note app. Success is
+an understandable sequence of decisions and a complete write, save, reopen and
+recover journey. The user chose this live experience in place of a PowerPoint.
+
+## Positioning
+
+This is a teaching example: the same editor gains capabilities as the workflow
+progresses. A generated naive-prompt baseline makes the design discussion tangible;
+functional save and recovery interactions demonstrate the resulting behavior.
+It is not a validated commercial note-taking proposition.
+
+## Operating Context
+
+The presenter runs the SvelteKit app locally in a browser. Desktop users scroll
+through twelve chapters beside a pinned canvas; chapter buttons and arrow keys
+provide another route. At 960px and below, explicit chapter navigation and a stacked
+layout make the app usable at narrower widths. Speaker cues and a handoff support
+rehearsal and presentation. The live demo uses ordinary text and controlled failures.
+The owning [demo script](demo.md) and [project state](project-state.md) hold rehearsal
+instructions and dated observations.
+
+## Capabilities and Constraints
+
+- Create, edit, search, explicitly save and reopen plain-text notes in one browser.
+- Preserve the same mounted editor and unsaved draft across chapter changes.
+- Retain the draft on save failure; offer retry or download and guard dirty navigation.
+- Keep the existing `marginal.notes.v1` storage key. Local persistence is not a backup
+  or device sync; simultaneous cross-tab writes are not transactional.
+- Select decorative covers locally from five pre-generated themes using saved note
+  text. No runtime image generation, external note transmission or model calls.
+- Explore illustrative team assignments and dated cost assumptions without starting
+  agents, switching models or predicting included subscription quota.
+- Accounts, collaboration, rich text and device sync remain outside this milestone.
+- Hosting/deployment beyond the local preview is undecided. GitHub publication ships
+  source, not a deployed app. Broader product-market usefulness remains untested.
+
+## Brand Commitments
+
+The existing name is Marginal. The user chose minimalism, a blueprint-inspired palette,
+illustrations revealed through iterations, and later readability/responsive refinement
+that preserves the current design. Keep instructions and save feedback clear and
+consistent. The [design record](design/README.md) and implementation hold the visual
+choices and asset provenance; this init does not establish a replacement visual system.
+
+## Evidence on Hand
+
+- Functional demo, plain-text sample notes and five generated illustrations. Asset
+  prompts and reference links live in [the design notes](design/illustrated-covers.md).
+- Dated builder checks and screenshots in [project state](project-state.md), including
+  save/reload, retained drafts, retry and local cover selection.
+- [Impeccable review](design/impeccable-review.md): 27 passing tests, successful Svelte
+  checks/build, and browser checks at phone, intermediate and desktop widths.
+- No independent user study, physical-device matrix, screen-reader study, measured
+  naive-prompt comparison or actual model-usage bill. Generated concepts and worked
+  cost estimates must remain labelled as illustrations or assumptions.
+
+## Product Principles
+
+1. Teach through one bounded, working outcome and make each iteration understandable.
+2. Earn trust through truthful save feedback and recoverable failures.
+3. Preserve the user's thoughts and keep note processing local.
+4. Keep shared guidance portable; expose optional tools and delegation explicitly.
+5. Separate accepted decisions, proposals, observations and remaining uncertainty.
+
+## Accessibility & Inclusion
+
+Preserve labelled fields, visible keyboard focus, announced save/error feedback,
+keyboard chapter navigation and reduced-motion behavior. Maintain readable controls
+and wrapping text across supported layouts. These are product acceptance expectations,
+not a claim of accessibility certification; physical devices and screen readers remain
+unverified.
 
 ## Observable acceptance criteria
 

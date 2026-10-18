@@ -44,4 +44,5 @@ browser matrix, screen-reader study or independent reviewer is implied.
 
 Impeccable context recognized the existing product document but reported that it does
 not use its newer schema. Its optional `init` flow could formalize that context later;
-the product document was preserved during this scoped refinement.
+the product document was preserved during this scoped refinement. A subsequent
+user-requested init has now formalized that existing [product record](../product.md).
