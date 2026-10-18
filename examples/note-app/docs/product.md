@@ -137,6 +137,9 @@ Additional acceptance criteria:
 16. Select from the pre-generated cover library locally using saved note text, with
     a default for unmatched themes. No runtime generation or note transmission.
     Covers stay stable during editing and failed saves, updating after successful save.
+17. Show the design first → implement → review loop explicitly: a generated reference
+    before the first live chapter, a phase navigator and a path from Review back to
+    Design. Preserve the mounted editor and draft while revisiting the reference.
 
 Earlier builder choices of a dependency-free server and a normal app-first screen
 are superseded by the explicit SvelteKit and interactive presentation requests.

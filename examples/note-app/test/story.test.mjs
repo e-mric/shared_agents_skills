@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { estimate, stages, plans } from '../src/lib/story.mjs';
+import { estimate, stages, plans, workflowLoop } from '../src/lib/story.mjs';
 
 test('the story begins with a labelled baseline and ends with a handoff', () => {
   assert.equal(stages[0].kind, 'baseline');
@@ -33,4 +33,15 @@ test('estimates scale and reject invalid model or workload assumptions', () => {
   assert.throws(() => estimate('unknown'));
   assert.throws(() => estimate('single', -1, 0));
   assert.throws(() => estimate('single', 0, Infinity));
+});
+
+test('loop navigation reaches design before implementation and review without moving live chapters', () => {
+  assert.deepEqual(workflowLoop.map(item => item.phase), ['design', 'implement', 'review']);
+  for (const item of workflowLoop) assert.equal(stages[item.chapter].phase, item.phase);
+  assert.ok(workflowLoop[0].chapter < workflowLoop[1].chapter);
+  assert.ok(workflowLoop[1].chapter < workflowLoop[2].chapter);
+  assert.equal(stages[workflowLoop[0].chapter].kind, 'design');
+  assert.equal(stages[workflowLoop[1].chapter].iteration, 0);
+  assert.equal(stages[workflowLoop[2].chapter].iteration, 3);
+  assert.ok(stages.filter(s => s.kind === 'live' && s.iteration < 3).every(s => s.phase === 'implement'));
 });

@@ -32,9 +32,13 @@ Nothing is deployed or sent to a remote service by the note editor.
 
 Start with [the live presentation script](docs/demo.md). The 12 chapters cover an
 illustrative generic baseline, understanding, guidance, shared context, methods, optional
-teams, intent, writing, saving, recovery, review and handoff. The note editor remains
+teams, design, writing, saving, recovery, review and handoff. The note editor remains
 mounted across chapters so changing steps retains its draft. Chapters reveal prebuilt
 capabilities; the story makes no model calls or live code-generation claims.
+
+The Design chapter pairs the generated reference with acceptance criteria. A visible
+**Design first → Implement → Review** navigator connects the reference to the live
+app; Review can return to Design for another iteration without losing the draft.
 
 The team selector explores hypothetical assignments and dated model-only estimates.
 It does not start agents or change models. API costs, Codex credits and included

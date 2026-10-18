@@ -18,15 +18,21 @@ outside text fields, selects and dialogs. On small screens, use chapter navigati
 | Context | Switch document tabs | Guidance, product decisions and current state have distinct owners. |
 | Methods | Choose a question | Match a method to the task and inspect available skills. |
 | Team | Select a plan, workload and billing view | Ask before delegation. Distinguish estimates, credits and quota. |
-| Intent | Expand the three criteria | Express care as observable behavior. |
+| Design | View Generated design, then Acceptance criteria | Generate a direction before implementing; an image is a reference, not a working app. |
 | Write | Click New, enter a title and body | The first iteration is an editor with a draft in memory. |
 | Save | Save, switch notes, reopen, then use the reload check | Persistence and truthful status form a complete outcome. |
 | Recover | Interrupt next save, edit, save, then retry | The failed write keeps the draft and prior saved version. |
-| Review | Inspect the journey, then tick observed criteria | Checks are presenter observations, not participant evidence. |
+| Review | Inspect the journey, tick observed criteria, then choose Refine the design | Compare the result with the reference and return to design where changes are needed. |
 | Handoff | Download or read the handoff | Report the outcome, actual interactions and their limits. |
 
 Suggested note title: “A thought worth keeping”. Body: “Good tools make room for thought.
 Great ones help you keep it.” For recovery, add “This line survives a failed save.”
+
+From Design onward, the three-part navigator highlights **Design first → Implement →
+Review**. Use “Implement this direction” to enter the live editor. In Review, choose
+“Refine the design” and return to Implement to demonstrate another pass; the same
+editor and draft remain mounted. These controls revisit a pre-generated reference
+and prebuilt capabilities. They do not generate images, execute code or start agents.
 
 ## Useful edge cases
 

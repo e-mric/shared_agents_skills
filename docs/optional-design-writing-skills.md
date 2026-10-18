@@ -11,6 +11,11 @@ or clearer prose. The shared workflow works without them and does not install an
 
 ## Apply one method at a time
 
+These methods support the shared **design first → implement → review** loop. Generate
+the visual reference before building a new app screen or landing/showcase page; use
+the review findings to decide what the next design iteration needs. Small fixes can
+reuse an accepted reference.
+
 1. Inspect the current host's skill catalog. If a relevant skill is available, read its
    instructions. Otherwise consult its upstream documentation and supported setup;
    installation paths and command syntax belong to the host, not this workflow.

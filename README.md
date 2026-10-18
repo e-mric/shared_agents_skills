@@ -2,6 +2,9 @@
 
 Reusable development guidance for working with coding agents across projects.
 
+For visual work, follow **design first → implement → review**: make the direction
+concrete, build a working outcome, compare it with the design and refine where needed.
+
 ## Available guidance
 
 - [Project development workflow](PROJECT_DEVELOPMENT_WORKFLOW.md): a setup request
@@ -19,6 +22,8 @@ SvelteKit to demonstrate it. Cloning this repository changes no agent configurat
 
 [Marginal](examples/note-app/README.md) explains the workflow through 12 interactive
 chapters. A pinned note app gains writing, saving and recovery as the story progresses.
+The Design chapter shows a generated reference; a loop navigator connects it to the
+live implementation and review, with a return path for the next design iteration.
 It includes an illustrative naive-prompt comparison, optional team/cost examples and
 presenter cues. The [presentation script](examples/note-app/docs/demo.md) guides a live demo.
 

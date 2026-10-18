@@ -183,6 +183,29 @@ complete flows and examples where useful. Explore a few different approaches onl
 a material uncertainty warrants it; revise assumptions and remove unnecessary complexity
 as evidence emerges. Spend some time saved by AI on a better experience.
 
+### Design first → implement → review
+
+For new visual surfaces and substantial redesigns, use this loop for both app screens
+and landing/showcase pages. It works with one agent or a team and does not depend on
+a particular model, skill or framework.
+
+1. **Design first.** Generate a visual design from the brief, real content and known
+   constraints before implementing the interface. Use image generation when available;
+   a mockup or prototype can make the direction concrete when it is not. Check hierarchy,
+   key states, narrow layouts and accessibility against the brief. Record the selected
+   direction and keep proposals distinct from accepted scope.
+2. **Implement.** Use the design as a reference and deliver one working outcome at a
+   time. Build real interactions and loading, empty, error and recovery states. A picture
+   does not prove behavior or authorize every feature it depicts.
+3. **Review.** Compare the rendered app with the design and acceptance criteria. Walk
+   the whole journey, run appropriate checks and record gaps with evidence. Revisit the
+   design where a gap requires a different approach, implement that change, then review again.
+
+Repeat until the bounded outcome meets its criteria and remaining limits are explicit.
+Small fixes can reuse the accepted design; they do not need a new concept image every
+time. Show references and evidence honestly: a pre-generated illustration or scripted
+reveal is not live generation, a working implementation or a measured quality comparison.
+
 Make experience criteria observable:
 
 - After important actions, users can tell what happened, the current status and what
@@ -236,7 +259,9 @@ research and design documents plus current implementation. Separate facts, hypot
 proposals and accepted decisions. Connect the user problem to one small milestone,
 scope/exclusions, journey, interaction states, accessibility and success criteria.
 Define intended feeling and distinctive choices with references and reasons; identify
-the experience reviewer. Explain how design choices serve users. Provide flows/visuals as useful;
+the experience reviewer. For new visual surfaces, generate a design before implementation
+and define how the working result will be reviewed against it. Explain how design choices
+serve users. Provide flows/visuals as useful;
 prototype only for a bounded uncertainty. Ask focused material questions. Record accepted
 decisions in the owning docs and leave a handoff. Done when the next outcome and its
 experience/acceptance criteria are clear; proposals remain proposals until accepted.
@@ -261,7 +286,9 @@ Read the project's agent guidance, wiki index and current state. Deliver [one ac
 feature/fix] against [spec/ticket] in [branch/worktree]. Inspect status and preserve
 unrelated work. Establish constraints, acceptance criteria, checkpoints and checks.
 Keep architecture/dependencies coherent; test meaningful behaviour and regressions.
-For UI changes, carry accepted intent through the complete flow and recovery states.
+For UI changes, implement against the selected design and carry accepted intent through
+the complete flow and recovery states. Compare the rendered result with that reference;
+revisit the design when the evidence reveals a gap, then implement and review again.
 Review the diff, run appropriate checks and experience review, and update owning docs.
 Done when the accepted outcome works with scoped evidence; report failures/unverified
 areas and leave an actionable handoff for remaining work. Do not assume other chats'

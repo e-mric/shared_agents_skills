@@ -145,3 +145,25 @@ Verified product schema, local links, live-config JSON and preservation of accep
 criteria. All 27 tests, Svelte checks and production build passed. Documentation and
 configuration only: no additional visual or browser-journey evidence is claimed.
 The user authorized committing and pushing this initialization.
+
+## Visible design → implementation → review loop · 2026-10-18
+
+The shared workflow now explicitly covers design-first visual work for both app
+screens and landing/showcase pages, with bounded implementation, evidence-based review
+and a return to design when needed. Small fixes can reuse an accepted reference.
+
+The presentation retains twelve chapters and the existing session positions. Design
+replaces the former Intent label at the same index, showing the generated concept and
+interactive acceptance criteria before the live editor. A three-part navigator marks
+Design first, Implement and Review; “Implement this direction” and “Refine the design”
+connect the loop. The handoff names the loop. All capabilities remain prebuilt: no
+generation, implementation runs or agent calls happen as the presenter navigates.
+
+Verification: 28 automated tests passed, including loop target/order and existing
+persistence, recovery and matching coverage. Svelte diagnostics and production build
+passed. Browser checks at 390px and default desktop width verified Design → Implement
+→ Review → Design → Implement; the exact unsaved title and multiline draft survived
+the narrow-screen round trip. The note then saved successfully. Acceptance criteria
+expanded, and the desktop return action restored the generated reference.
+[Loop screenshot](evidence/design-implement-review-loop.png).
+No additional physical-device or assistive-technology coverage is claimed.

@@ -117,3 +117,27 @@
 }
 .note-top { min-height: 56px; flex-shrink: 0; }
 .recovery-tools, .note-bottom { flex-shrink: 0; }
+
+/* One visible loop connects the generated reference, live build and experience review. */
+.stage-canvas { flex-direction: column; gap: 12px; }
+.canvas-content { display: flex; flex-direction: column; min-width: 0; width: 100%; }
+.canvas-content > * { width: 100%; }
+.workflow-loop { display: flex; align-items: center; justify-content: center; gap: 9px; padding: 7px 12px; background: var(--paper); border: 1px solid var(--line); position: sticky; top: 0; z-index: 2; flex-shrink: 0; }
+.workflow-loop button { min-height: 38px; padding: 6px 14px; border-radius: 4px; font-size: 13px; }
+.workflow-loop button.active { background: var(--accent); color: white; }
+.workflow-loop button.active:hover { color: white; background: var(--ink); }
+.loop-arrow { font-size: 14px; color: var(--muted); }
+.design-stage { background: white; border: 1px solid var(--line); }
+.design-stage .canvas-top { flex-wrap: wrap; }
+.design-reference { width: 100%; height: auto; display: block; aspect-ratio: 1672 / 941; object-fit: contain; }
+.design-explanation { padding: 18px 24px 24px; border-top: 1px solid var(--line); }
+.design-explanation > p:first-child { font: 22px/1.4 Georgia, serif; margin: 0 0 8px; }
+.design-explanation .canvas-caption { margin: 0 0 18px; font-size: 11px; }
+.design-stage .paper-example { border: 0; }
+.refine-design { margin-top: 4px; }
+@media (max-width: 960px) {
+  .workflow-loop { position: static; gap: 3px; padding: 6px; }
+  .workflow-loop button { min-height: 44px; font-size: 12px; padding: 6px 10px; }
+  .design-explanation { padding: 18px; }
+  .stage-canvas { gap: 16px; }
+}
