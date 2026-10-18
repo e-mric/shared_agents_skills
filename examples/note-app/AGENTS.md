@@ -3,6 +3,10 @@
 An interactive SvelteKit presentation that evolves into a real note app. At task start
 read [the index](docs/index.md), [project state](docs/project-state.md), and relevant links.
 
+- For new visual surfaces or substantial redesigns, follow the user's preference:
+  generate a design first, implement it, then review the rendered result. This applies
+  to app screens and landing/showcase pages, overriding Impeccable's code-first default
+  for app screens. Bounded fixes can use the already accepted design as their reference.
 - Preserve existing notes, the storage key and unrelated presentation files. Use demo data.
 - Follow Svelte 5 / SvelteKit 3 conventions. Keep browser storage inside client lifecycle.
 - `src/lib/notes.mjs` owns persistence and conflicts. `NoteEditor.svelte` owns note UI.
