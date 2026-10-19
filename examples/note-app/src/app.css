@@ -8,7 +8,7 @@
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 /* The explanation scrolls; one persistent canvas carries the live app. */
 .presentation-header{position:sticky;top:0;z-index:5;background:var(--paper)}
-.presentation-main{align-items:start;padding-top:28px;padding-bottom:190px;min-height:0}
+.presentation-main{overflow-anchor:none;align-items:start;padding-top:28px;padding-bottom:190px;min-height:0}
 .narrative-track{min-width:0}
 .scroll-chapter{min-height:calc(100svh - 64px);padding:22px 0 210px;scroll-margin-top:92px;display:flex;align-items:flex-start}
 .scroll-chapter .narrative{padding-top:26px;position:sticky;top:110px}
@@ -140,4 +140,67 @@
   .workflow-loop button { min-height: 44px; font-size: 12px; padding: 6px 10px; }
   .design-explanation { padding: 18px; }
   .stage-canvas { gap: 16px; }
+}
+
+/* Review keeps the comparison and presenter actions in one laptop viewport. */
+.live-host { flex-direction: column; min-width: 0; }
+.canvas-content.review-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); gap: 14px; align-items: start; }
+.review-reference { background: white; border: 1px solid var(--line); padding: 14px; min-width: 0; }
+.review-reference h2, .review-live-heading h2 { font: 400 20px/1.3 Georgia, serif; margin: 0 0 4px; }
+.review-reference > p, .review-live-heading p { font-size: 11px; line-height: 1.6; color: var(--muted); margin: 0 0 8px; }
+.review-reference img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+.reference-full-size { display: inline-block; font-size: 12px; margin: 10px 0 14px; color: var(--accent); }
+.review-reference h3 { font-size: 13px; margin: 0 0 8px; font-weight: 600; }
+.iteration-changes { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px; }
+.iteration-changes li { padding: 8px 0; border-top: 1px solid var(--line); font-size: 11px; line-height: 1.5; }
+.iteration-changes strong { display: block; font-weight: 600; }
+.iteration-changes span { display: block; color: var(--muted); }
+.review-scope { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.6; }
+.review-live-heading { padding: 10px 14px; background: white; border: 1px solid var(--line); border-bottom: 0; }
+.review-live-heading p { margin: 0; }
+@media (min-width: 961px) {
+  .presentation-main.review-layout { grid-template-columns: minmax(200px, .55fr) minmax(0, 2.3fr); gap: 2%; }
+  .review-layout .scroll-chapter { padding-bottom: 0; }
+  .review-layout .scroll-chapter:not(.active-chapter) .narrative { visibility: hidden; }
+  .review-layout .narrative { padding-top: 10px; }
+  .review-layout .narrative h1 { font-size: 36px; letter-spacing: -1px; margin-bottom: 16px; }
+  .review-layout .chapter-number { margin-bottom: 14px; }
+  .review-layout .chapter-description { font-size: 13px; line-height: 1.65; margin-bottom: 16px; }
+  .review-layout .addition, .review-layout .interaction-hint { display: none; }
+  .review-layout .review-list { margin: 12px 0; }
+  .review-layout .review-list > label { font-size: 12px; margin-bottom: 12px; }
+  .review-layout .speaker-cue { max-height: 100px; overflow: auto; }
+  .review-layout .stage-canvas { top: 80px; max-height: calc(100svh - 196px); min-height: 0; }
+  .review-layout .stage-canvas .note-app { min-height: 0; }
+  .review-layout .workflow-loop { padding: 4px 10px; }
+  .review-layout .stage-canvas { gap: 8px; }
+  .review-grid .illustrated .note-workspace { grid-template-columns: minmax(125px, 30%) minmax(0, 1fr); height: clamp(280px, calc(100svh - 440px), 430px); min-height: 0; max-height: none; }
+  .review-grid .note-cards { grid-template-columns: 1fr; }
+  .review-grid .app-tagline { display: none; }
+  .review-grid .note-top { height: 40px; min-height: 40px; padding: 0 12px; }
+  .review-grid .note-editor { padding: 8px 12px; }
+  .review-grid .note-toolbar { margin-bottom: 6px; min-height: 36px; }
+  .review-grid .editor-cover { margin-bottom: 8px; }
+  .review-grid .editor-cover img { height: 48px; }
+  .review-grid .note-title { font-size: 23px; min-block-size: 1.3em; margin-bottom: 8px; }
+  .review-grid .note-body { font-size: 15px; min-height: 75px; }
+  .review-grid .note-word-count { margin-top: 8px; }
+  .review-grid .recovery-tools { padding: 6px 10px; gap: 8px; }
+  .review-grid .recovery-tools > span { flex: 1; }
+  .review-grid .note-bottom { padding: 7px 10px; }
+  .storyboard.compact-review { bottom: 56px; min-height: 48px; padding-top: 12px; padding-bottom: 10px; }
+  .compact-review .mini-frame { display: none; }
+  .compact-review .frame-label { margin-bottom: 0; }
+  .presentation-footer.compact-review { height: 56px; padding-top: 6px; padding-bottom: 6px; }
+}
+@media (max-width: 960px) {
+  .canvas-content.review-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .review-reference { padding: 20px; }
+  .iteration-changes { gap: 0 18px; }
+}
+@media (min-width: 961px) {
+  .review-reference { padding: 12px; }
+  .review-reference img { max-height: 100px; object-fit: contain; }
+  .reference-full-size { margin-bottom: 10px; }
+  .iteration-changes li { padding: 6px 0; }
 }

@@ -25,6 +25,12 @@ outside text fields, selects and dialogs. On small screens, use chapter navigati
 | Review | Inspect the journey, tick observed criteria, then choose Refine the design | Compare the result with the reference and return to design where changes are needed. |
 | Handoff | Download or read the handoff | Report the outcome, actual interactions and their limits. |
 
+In Review, compare the generated reference on the left with the functioning note app
+on the right. The iteration summary names what Write, Save, Recover and Review added.
+Use the full-size reference link for a closer look. Try editing and recovery in the
+live panel; it is the same editor used earlier. At narrow widths the panels stack.
+The comparison explains a design-to-build process, not a measured before/after study.
+
 Suggested note title: “A thought worth keeping”. Body: “Good tools make room for thought.
 Great ones help you keep it.” For recovery, add “This line survives a failed save.”
 
@@ -60,3 +66,15 @@ or external model calls occur; this is selection from five pre-generated illustr
 
 Theme examples: save “Books to read”, “Creative ideas” or “Dinner recipes”.
 The title takes priority if the body mentions another theme.
+
+## Present with less text
+
+Leave Speaker notes closed for the audience. Each chapter has one message: say it,
+then demonstrate the action. Open Speaker notes only when you need the supporting
+explanation. Review fits the comparison and controls on a 1280×720 display; narrower
+screens stack the panels. Returning to Review starts its scroll surfaces at the top
+and keeps your draft. Explicit chapter choices remain selected until you scroll again.
+
+Regression rehearsal: type a long unsaved body, scroll it down, choose Refine, then
+Review. Its first line should be visible and its full text unchanged. Interrupt a save
+and retry. Rehearse on the actual presentation display before presenting.

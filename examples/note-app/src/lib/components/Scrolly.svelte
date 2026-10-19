@@ -24,6 +24,7 @@
     const count = Math.max(1, Math.floor(increments));
     const threshold = Array.from({ length: count + 1 }, (_, index) => index / count);
     const observer = new IntersectionObserver(entries => {
+      if (disabled) return;
       for (const entry of entries) {
         const index = nodes.indexOf(entry.target);
         if (index !== -1) ratios[index] = entry.isIntersecting ? entry.intersectionRatio : 0;

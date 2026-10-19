@@ -140,6 +140,16 @@ Additional acceptance criteria:
 17. Show the design first → implement → review loop explicitly: a generated reference
     before the first live chapter, a phase navigator and a path from Review back to
     Design. Preserve the mounted editor and draft while revisiting the reference.
+18. Review places the generated reference beside the functioning editor on desktop,
+    stacking them on narrow screens. Describe additions per iteration and label the
+    reference as an illustration. Keep saving, recovery and draft continuity functional.
+
+19. At 1280×720, Review shows the comparison, four iteration summaries, review checks
+    and navigation together. Returning to Review resets its scroll surfaces while
+    preserving the exact unsaved draft.
+20. Give each chapter one short message. Keep supporting explanation in optional
+    Speaker notes; retain local-storage, cost and generated-reference caveats near
+    the relevant decisions.
 
 Earlier builder choices of a dependency-free server and a normal app-first screen
 are superseded by the explicit SvelteKit and interactive presentation requests.

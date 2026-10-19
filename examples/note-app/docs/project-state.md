@@ -167,3 +167,56 @@ the narrow-screen round trip. The note then saved successfully. Acceptance crite
 expanded, and the desktop return action restored the generated reference.
 [Loop screenshot](evidence/design-implement-review-loop.png).
 No additional physical-device or assistive-technology coverage is claimed.
+
+## Side-by-side Review comparison · 2026-10-18
+
+Review now pairs the generated reference and a four-iteration summary with the same
+working note editor. The reference can open at full size; the live app remains editable.
+The panels stack through 960px and use a compact writing layout on desktop. Text makes
+clear that this is an illustrative reference and that out-of-scope features in the
+picture were not added to the browser-only milestone.
+
+Svelte diagnostics, all 28 tests and production build passed. Browser checks verified
+the desktop comparison and stacked 390px view, exact draft retention from Write into
+Review and through a Design round trip, and interrupted save followed by successful
+retry in the comparison panel. [Review screenshot](evidence/review-side-by-side.png).
+No physical-device or assistive-technology coverage is claimed. Publication was
+authorized on 2026-10-19 with the follow-up fixes below.
+
+Impeccable critique follow-up: two isolated assessments rated the Review surface
+29/40 heuristically. Source scans of the route and editor returned zero findings,
+but desktop inspection at approximately 1280×720 found that review controls and later
+iteration explanations begin below the fixed navigation, with several scroll contexts.
+Returning to Review can also preserve a lower canvas position. These were recorded as
+P1/P2 issues; the prior functional checks do not establish presentation-fit quality.
+The snapshot is archived under `.impeccable/critique/`. No source fixes were made in
+this check, and no new accessibility certification or participant evidence is implied.
+
+## Review fit, scroll reset and information fatigue · 2026-10-19
+
+Resolved both priority findings from the archived Impeccable critique. Review uses a
+shorter heading, a two-column iteration summary, a smaller linked reference and a
+compact storyboard. The same mounted editor remains functional. Entry resets canvas,
+editor and note-body scroll positions without changing the draft or storage. Explicit
+chapter choices stay selected until the presenter scrolls again; this avoids the
+observer overriding navigation while layout dimensions change.
+
+Browser regression at 1280×720: reference, all four iteration explanations, three
+review checks, Refine, save and recovery controls were visible above navigation.
+Canvas bottom was 602px; storyboard began at 616px, with no canvas overflow. A note
+body scrolled to 700.5px returned to 0, with all 24 unsaved lines unchanged after
+Review → Design → Review. The same round trip retained the draft at 390×844 with a
+single-column comparison and no horizontal overflow. Controlled save failure retained
+exact multiline text; retry saved successfully. Scrolling the narrative resumed the
+observer and reached Handoff. [Final Review screenshot](evidence/review-fit-1280x720.png).
+
+Information-fatigue pass: chapter descriptions decreased from 255 to 97 words total.
+Repeated additions moved into optional Speaker notes; repeated interaction hints were
+removed. See the [concise audit](design/information-fatigue.md) for remaining tradeoffs.
+
+All 28 tests, Svelte diagnostics (zero errors/warnings), and production build passed.
+One final Impeccable source scan of the changed route and Scrolly returned no findings;
+this is not accessibility certification. The exact prior critique snapshot was closed,
+preserving its historical score rather than claiming a new score. No independent
+participant study, physical-device check or screen-reader matrix is claimed. The user
+authorized committing and pushing the comparison, fixes and final fatigue pass.

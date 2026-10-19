@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import NoteEditor from '../lib/components/NoteEditor.svelte';
   import Scrolly from '../lib/components/Scrolly.svelte';
   import { stages, plans, estimate, workflowLoop } from '../lib/story.mjs';
@@ -24,10 +24,14 @@
   let handoffReady = $state(false);
   let chapterElements = $state<HTMLElement[]>([]);
   let mobile = $state(false);
+  let canvas: HTMLElement;
+  let navigating = $state(false);
+  let navigationId = 0;
   const stage = $derived(stages[step]);
   const cost = $derived(estimate(plan, 60000 * workload, 10000 * workload));
   const selectedPlan = $derived(plans.find(p => p.id === plan)!);
   const isLive = $derived(stage.kind === 'live');
+  const isReview = $derived(stage.phase === 'review');
   const lastLiveIteration = $derived(step < 8 ? 0 : step < 9 ? 1 : step < 10 ? 2 : 3);
   const storageKey = 'marginal.story.v1';
   const docs: Record<string, { purpose: string; text: string }> = {
@@ -50,13 +54,40 @@
   function persist() {
     try { sessionStorage.setItem(storageKey, JSON.stringify({ step, plan, workload, billing, criteria, review, evidence })); } catch { /* Presentation preferences can remain in memory. */ }
   }
-  function go(index: number) {
+  async function resetReviewScroll() {
+    await tick();
+    if (!isReview) return;
+    canvas?.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    canvas?.querySelectorAll('.note-editor, .note-body').forEach(element => {
+      element.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    });
+  }
+  $effect(() => { if (ready && isReview) void resetReviewScroll(); });
+  async function go(index: number) {
+    const id = ++navigationId;
+    navigating = true;
     step = Math.max(0, Math.min(stages.length - 1, index));
+    // Review changes the layout. Scroll only after its dimensions have settled,
+    // with the observer paused so it cannot override an explicit chapter choice.
+    await tick();
+    await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+    if (id !== navigationId) return;
     if (ready) {
       persist();
+      chapterElements[step]?.querySelector<HTMLElement>('h1')?.focus({ preventScroll: true });
       if (!mobile) chapterElements[step]?.scrollIntoView({ block: 'start', behavior: 'instant' });
       else window.scrollTo({ top: 0, behavior: 'instant' });
+      if (stages[step].phase === 'review') await resetReviewScroll();
     }
+    // Recheck alignment after the layout and scroll notifications settle.
+    await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+    await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+    if (id !== navigationId) return;
+    if (!mobile) chapterElements[step]?.scrollIntoView({ block: 'start', behavior: 'instant' });
+    // Keep an explicit choice until the presenter starts scrolling again.
+  }
+  function resumeScroll(event: Event) {
+    if (event.type !== 'pointerdown' || event.target === window.document.documentElement) navigating = false;
   }
   function keyboard(event: KeyboardEvent) {
     const target = event.target as HTMLElement;
@@ -111,30 +142,28 @@
 </script>
 
 <svelte:head><title>Marginal — an app, built step by step</title><meta name="description" content="An interactive presentation of a shared development workflow, told through a note app that evolves with each iteration." /></svelte:head>
-<svelte:window onkeydown={keyboard} />
+<svelte:window onkeydown={keyboard} onwheel={resumeScroll} ontouchmove={resumeScroll} onpointerdown={resumeScroll} />
 <a class="skip-link" href="#chapter">Skip to chapter</a>
 <header class="presentation-header"><a href="#chapter" class="wordmark">marginal</a><span class="header-caption">design first → implement → review</span><div class="header-actions"><button onclick={() => { go(0); }}>Restart story</button><button onclick={() => { showNotes = !showNotes; }} aria-pressed={showNotes}>Speaker notes</button><button class="fullscreen" onclick={fullscreen} aria-label="Toggle fullscreen">⛶</button></div></header>
 {#if fullScreenError}<p role="status" class="fullscreen-message">{fullScreenError}</p>{/if}
-<main id="chapter" class="presentation-main">
+<main id="chapter" class="presentation-main" class:review-layout={isReview}>
   <div class="narrative-track">
-    <Scrolly bind:value={step} top={84} bottom={175} disabled={mobile}>
+    <Scrolly bind:value={step} top={84} bottom={175} disabled={mobile || navigating}>
     {#each stages as item, index}
       <section class="scroll-chapter" class:active-chapter={step === index} id={`chapter-${index}`} data-chapter={index} bind:this={chapterElements[index]} aria-labelledby={`chapter-title-${index}`}>
         <div class="narrative">
           <p class="chapter-number">{item.section}</p>
-          <h1 id={`chapter-title-${index}`}>{item.title}</h1>
+          <h1 id={`chapter-title-${index}`} tabindex="-1">{item.title}</h1>
           <p class="chapter-description">{item.description}</p>
-          <p class="addition"><span aria-hidden="true">+</span> {item.addition}</p>
           {#if index === 8}<button class="outline reload-check" onclick={reloadCheck} disabled={noteDirty || !evidence.saved}>Reload to check persistence <span aria-hidden="true">↻</span></button>{/if}
           {#if index === 10}<div class="review-list" aria-label="Presenter experience review">{#each ['Save status and next steps are clear', 'List and editor use consistent titles', 'A failed save keeps the draft and allows retry'] as observation, i}<label><input type="checkbox" bind:checked={review[i]} /><span>{observation}</span></label>{/each}</div><button class="outline refine-design" onclick={() => { designView = 'reference'; go(6); }}>Refine the design <span aria-hidden="true">↶</span></button>{/if}
-          {#if showNotes}<aside class="speaker-cue"><p class="eyebrow">PRESENTER CUE</p><p>{item.cue}</p></aside>{/if}
-          <p class="interaction-hint">{item.kind === 'live' ? 'Try it in the live app' : index === 0 ? 'Scroll to see the app take shape' : 'Explore, then scroll to continue'} <span aria-hidden="true">{item.kind === 'live' ? '↗' : '↓'}</span></p>
+          {#if showNotes}<aside class="speaker-cue"><p class="eyebrow">PRESENTER CUE</p><p>{item.addition} {item.cue}</p></aside>{/if}
         </div>
       </section>
     {/each}
     </Scrolly>
   </div>
-  <section class="stage-canvas" aria-label={`${stage.label} demonstration`}>
+  <section bind:this={canvas} class="stage-canvas" aria-label={`${stage.label} demonstration`}>
     {#if step >= 6}
       <nav class="workflow-loop" aria-label="Design, implement and review loop">
         {#each workflowLoop as item, index}
@@ -143,8 +172,24 @@
         {/each}
       </nav>
     {/if}
-    <div class="canvas-content">
-    <div class="live-host" hidden={!isLive}><NoteEditor active={isLive} iteration={lastLiveIteration} onEvidence={record} onDirty={(value) => { noteDirty = value; }} /></div>
+    <div class="canvas-content" class:review-grid={isReview}>
+    <aside class="review-reference" hidden={!isReview} aria-label="Generated reference and iteration changes">
+      <h2>Generated design</h2>
+      <p>A visual reference, not a working app.</p>
+      <a href="/design/visual-notes-concept-v2.png" target="_blank" rel="noreferrer" aria-label="Open the generated design at full size"><img src="/design/visual-notes-concept-v2.png" alt="Generated design with illustrated blue note cards and a spacious writing pane" /></a>
+      <a class="reference-full-size" href="/design/visual-notes-concept-v2.png" target="_blank" rel="noreferrer">View full-size design</a>
+      <h3>What the iterations added</h3>
+      <ol class="iteration-changes">
+        <li><strong>Write</strong><span>An editable title and draft.</span></li>
+        <li><strong>Save</strong><span>Local persistence, search and illustrated cards.</span></li>
+        <li><strong>Recover</strong><span>Retained drafts, retry and download after failure.</span></li>
+        <li><strong>Review</strong><span>Wrapping titles, readable controls and responsive layouts.</span></li>
+      </ol>
+      <p class="review-scope">Browser only. Accounts, Favorites and Archive stay outside scope.</p>
+    </aside>
+    <div class="live-host" hidden={!isLive}>
+      {#if isReview}<div class="review-live-heading"><h2>Working note app</h2><p>Try saving and recovery.</p></div>{/if}
+      <NoteEditor active={isLive} iteration={lastLiveIteration} onEvidence={record} onDirty={(value) => { noteDirty = value; }} /></div>
     {#if stage.kind === 'baseline'}
       <div class="comparison-stage"><div class="canvas-top"><span>One prompt. Many unanswered decisions.</span><div class="text-tabs"><button class:active={comparison === 'baseline'} onclick={() => { comparison = 'baseline'; }}>Naive prompt</button><button class:active={comparison === 'direction'} onclick={() => { comparison = 'direction'; }}>With intent</button></div></div><div class="comparison-image"><img src={comparison === 'baseline' ? '/design/generic-baseline.png' : '/design/visual-notes-concept-v2.png'} alt={comparison === 'baseline' ? 'Generated illustrative baseline: a conventional blue note app with a sidebar, search and editor' : 'Generated illustrated note app proposal with blue landscape covers and a spacious writing pane'} /></div><p class="canvas-caption">Generated design explorations, not a measured model comparison. The following chapters build the live app in iterations.</p></div>
     {:else if stage.kind === 'brief'}
@@ -173,5 +218,5 @@
     </div>
   </section>
 </main>
-<nav class="storyboard" aria-label="Workflow storyboard">{#each stages as item, i}<button class:current={step === i} class:visited={step > i} aria-current={step === i ? 'step' : undefined} onclick={() => go(i)} aria-label={`Chapter ${i + 1}: ${item.label}`}><span class="frame-label"><span>{String(i).padStart(2, '0')}</span>{item.label}</span><span class="mini-frame" class:mini-live={i >= 7 && i <= 10} class:mini-recovery={i === 9} class:mini-team={i === 5}><i class="mini-top"></i><i class="mini-side"></i><i class="mini-line one"></i><i class="mini-line two"></i><i class="mini-line three"></i></span></button>{/each}</nav>
-<footer class="presentation-footer"><p><span>{String(step + 1).padStart(2, '0')}</span> / {stages.length} <span class="keyboard-hint">Scroll to explore · ← → for chapters</span></p><div><button class="outline" disabled={step === 0} onclick={() => go(step - 1)}>Previous</button><button class="solid" onclick={() => go(step === stages.length - 1 ? 0 : step + 1)}>{step === stages.length - 1 ? 'Back to the beginning' : 'Next step'} <span aria-hidden="true">→</span></button></div></footer>
+<nav class="storyboard" class:compact-review={isReview} aria-label="Workflow storyboard">{#each stages as item, i}<button class:current={step === i} class:visited={step > i} aria-current={step === i ? 'step' : undefined} onclick={() => go(i)} aria-label={`Chapter ${i + 1}: ${item.label}`}><span class="frame-label"><span>{String(i).padStart(2, '0')}</span>{item.label}</span><span class="mini-frame" class:mini-live={i >= 7 && i <= 10} class:mini-recovery={i === 9} class:mini-team={i === 5}><i class="mini-top"></i><i class="mini-side"></i><i class="mini-line one"></i><i class="mini-line two"></i><i class="mini-line three"></i></span></button>{/each}</nav>
+<footer class="presentation-footer" class:compact-review={isReview}><p><span>{String(step + 1).padStart(2, '0')}</span> / {stages.length} <span class="keyboard-hint">Scroll to explore · ← → for chapters</span></p><div><button class="outline" disabled={step === 0} onclick={() => go(step - 1)}>Previous</button><button class="solid" onclick={() => go(step === stages.length - 1 ? 0 : step + 1)}>{step === stages.length - 1 ? 'Back to the beginning' : 'Next step'} <span aria-hidden="true">→</span></button></div></footer>
