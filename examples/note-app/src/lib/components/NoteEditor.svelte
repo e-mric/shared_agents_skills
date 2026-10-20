@@ -113,7 +113,7 @@
 </script>
 
 <svelte:window onkeydown={shortcut} />
-<div class="note-app" class:writing-only={iteration === 0} class:illustrated={iteration >= 1} class:refined={iteration >= 3}>
+<div class="note-app" class:markdown-writing={mode === 'write'} class:writing-only={iteration === 0} class:illustrated={iteration >= 1} class:refined={iteration >= 3}>
   <header class="note-top"><span class="app-brand"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20 16 9M8 17c-2-6 2-12 12-13 0 9-4 15-12 13Z"/><path d="m12 13 1-6m-1 6 6-1"/></svg> marginal</span><span class="app-tagline">A little room for thought.</span><button onclick={newNote} disabled={!ready}>+ New note</button></header>
   {#if loadFailure}<div class="note-alert" role="alert"><p>{loadFailure}</p><button onclick={load}>Try opening notes again</button></div>{/if}
   <div class="note-workspace">
@@ -150,10 +150,10 @@
       <label class="sr-only" for="note-title">Note title</label><textarea class="note-title" rows="2" id="note-title" bind:this={titleField} bind:value={draft.title} disabled={!ready} placeholder="Untitled note" maxlength="160" autocomplete="off"></textarea>
       <div class="markdown-controls">
         <div class="editor-modes" role="group" aria-label="Editor view"><button aria-pressed={mode === 'write'} onclick={() => { mode = 'write'; }}>Write</button><button aria-pressed={mode === 'preview'} onclick={() => { mode = 'preview'; }}>Preview</button></div>
-        <button class="voice-placeholder" disabled title="Voice-to-text transcription is coming soon">Transcribe voice to text · coming soon</button>
+        <button class="voice-placeholder" disabled aria-label="Transcribe voice to text · coming soon" title="Voice-to-text transcription is coming soon">Voice to text · soon</button>
       </div>
       {#if mode === 'write'}<div class="markdown-tools" role="group" aria-label="Markdown formatting">
-        {#each [{kind: 'heading', label: 'Heading', text: 'H'}, {kind: 'bold', label: 'Bold', text: 'B'}, {kind: 'italic', label: 'Italic', text: 'I'}, {kind: 'list', label: 'Bullet list', text: '≡'}, {kind: 'task', label: 'Task list', text: '☑'}, {kind: 'link', label: 'Link', text: '↗'}, {kind: 'code', label: 'Inline code', text: '</>'}] as tool}<button aria-label={tool.label} title={tool.label} disabled={!ready} onclick={() => format(tool.kind)}>{tool.text}</button>{/each}
+        {#each [{kind: 'heading', label: 'Heading', path: 'M5 5v14M19 5v14M5 12h14'}, {kind: 'bold', label: 'Bold', path: 'M6 12h8a4 4 0 0 0 0-8H6v16h9a4 4 0 0 0 0-8H6'}, {kind: 'italic', label: 'Italic', path: 'M10 4h10M4 20h10M15 4 9 20'}, {kind: 'list', label: 'Bullet list', path: 'M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01'}, {kind: 'task', label: 'Task list', path: 'M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h10M9 10l3 3 8-9'}, {kind: 'link', label: 'Link', path: 'M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-2 2M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l2-2'}, {kind: 'code', label: 'Inline code', path: 'm8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16'}] as tool}<button aria-label={tool.label} title={tool.label} disabled={!ready} onclick={() => format(tool.kind)}><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d={tool.path}/></svg></button>{/each}
       </div>{/if}
       <label class="sr-only" for="note-body">Note text</label><textarea hidden={mode !== 'write'} class="note-body markdown-source" id="note-body" bind:this={bodyField} bind:value={draft.body} disabled={!ready} placeholder="Write in Markdown…" spellcheck="true"></textarea>
       <section class="markdown-preview" hidden={mode !== 'preview'} aria-label="Markdown preview">{#if draft.body.trim()}{@html preview}{:else}<p class="preview-empty">Your formatted note will appear here.</p>{/if}</section>

@@ -154,7 +154,8 @@ Additional acceptance criteria:
     Support headings, emphasis, lists, task lists, quotes, links, fenced code and tables.
     Preserve the exact Markdown source in the existing note schema and export `.md`.
     Escape embedded HTML and show images as explicit links, without automatic requests.
-22. Show “Transcribe voice to text · coming soon” as a disabled placeholder. Do not
+22. Show a disabled voice-to-text placeholder, with its coming-soon state in the
+    visible label and full accessible name. Do not
     record audio, request microphone access or call a transcription service.
 
 Earlier builder choices of a dependency-free server and a normal app-first screen

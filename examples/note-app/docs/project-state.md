@@ -252,3 +252,20 @@ Publication authorized on 2026-10-20: Markdown editor, voice-to-text placeholder
 removal of Speaker notes. All 32 tests, Svelte diagnostics and production build were
 re-run successfully before committing. Browser evidence above remains dated to the
 implementation pass; no new device coverage is claimed.
+
+## Markdown readability refinement · 2026-10-20
+
+User requested an Impeccable check of minimalism and desktop/mobile readability.
+Applied a bounded polish: single-row SVG formatting tools, larger mobile source and
+preview text, a shorter voice placeholder label, and a sticky desktop save/status row.
+Writing in the compact desktop Review panel omits the decorative cover; preview and
+library artwork remain. Removed the redundant live-panel subtitle and reassigned the
+space to the editor. Storage, source, Markdown sanitization and transcription scope
+are unchanged. [Review and evidence](design/markdown-impeccable-review.md).
+
+All 32 tests, diagnostics and production build passed. Browser checks covered phone,
+tablet and laptop layouts, Markdown preview, draft continuity, failed save/retry and
+the sticky save row. Source detector scan returned no findings; no accessibility
+certification or independent user testing is implied. The user authorized committing
+and pushing these refinements on 2026-10-20. All 32 tests, diagnostics and production
+build were re-run successfully before publication.

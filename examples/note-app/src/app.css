@@ -157,7 +157,6 @@
 .iteration-changes span { display: block; color: var(--muted); }
 .review-scope { font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.6; }
 .review-live-heading { padding: 10px 14px; background: white; border: 1px solid var(--line); border-bottom: 0; }
-.review-live-heading p { margin: 0; }
 @media (min-width: 961px) {
   .presentation-main.review-layout { grid-template-columns: minmax(200px, .55fr) minmax(0, 2.3fr); gap: 2%; }
   .review-layout .scroll-chapter { padding-bottom: 0; }
@@ -173,7 +172,7 @@
   .review-layout .stage-canvas .note-app { min-height: 0; }
   .review-layout .workflow-loop { padding: 4px 10px; }
   .review-layout .stage-canvas { gap: 8px; }
-  .review-grid .illustrated .note-workspace { grid-template-columns: minmax(125px, 30%) minmax(0, 1fr); height: clamp(280px, calc(100svh - 440px), 430px); min-height: 0; max-height: none; }
+  .review-grid .illustrated .note-workspace { grid-template-columns: minmax(125px, 30%) minmax(0, 1fr); height: clamp(298px, calc(100svh - 422px), 448px); min-height: 0; max-height: none; }
   .review-grid .note-cards { grid-template-columns: 1fr; }
   .review-grid .app-tagline { display: none; }
   .review-grid .note-top { height: 40px; min-height: 40px; padding: 0 12px; }
@@ -210,11 +209,11 @@
 .editor-modes button { padding: 6px 10px; min-height: 32px; font-size: 12px; border-radius: 4px; }
 .editor-modes button[aria-pressed=true] { background: var(--paper); color: var(--accent); box-shadow: inset 0 0 0 1px var(--line); }
 .voice-placeholder:disabled { font-size: 11px; color: var(--muted); opacity: 1; cursor: default; padding: 4px 0; text-align: left; }
-.markdown-tools { display: flex; flex-wrap: wrap; gap: 3px; padding-bottom: 6px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
-.markdown-tools button { min-width: 32px; min-height: 32px; font-size: 13px; border-radius: 4px; color: var(--accent); }
+.markdown-tools { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0; max-width: 300px; padding-bottom: 6px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.markdown-tools button { display: grid; place-items: center; min-width: 0; min-height: 32px; font-size: 13px; border-radius: 4px; color: var(--accent); }
 .markdown-tools button:hover { background: var(--paper); }
 .note-editor .note-body.markdown-source { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 14px; line-height: 1.7; }
-.markdown-preview { min-height: 100px; font-size: 15px; line-height: 1.7; overflow-wrap: anywhere; }
+.markdown-preview { min-height: 100px; font-size: 16px; line-height: 1.7; overflow-wrap: anywhere; }
 .markdown-preview > :first-child { margin-top: 0; }
 .markdown-preview h1, .markdown-preview h2, .markdown-preview h3 { font-family: Georgia, serif; line-height: 1.25; letter-spacing: -.4px; }
 .markdown-preview h1 { font-size: 28px; }.markdown-preview h2 { font-size: 23px; }.markdown-preview h3 { font-size: 19px; }
@@ -229,4 +228,15 @@
 .preview-empty { color: var(--muted); }
 .note-word-count { display: flex; align-items: center; gap: 4px; }
 .note-word-count button { margin-left: auto; color: var(--accent); font-size: 11px; padding: 5px; }
-@media(max-width:960px) { .markdown-tools button, .editor-modes button { min-height: 44px; min-width: 40px; } }
+@media(min-width:961px) {
+  .note-toolbar { position: sticky; top: 0; z-index: 1; background: white; }
+  .review-grid .note-toolbar { top: -8px; }
+  .review-grid .markdown-writing .editor-cover { display: none; }
+}
+@media(max-width:960px) {
+  .markdown-tools { max-width: none; }
+  .markdown-tools button, .editor-modes button { min-height: 44px; }
+  .markdown-tools button { min-width: 0; }
+  .editor-modes button { min-width: 44px; }
+  .note-editor .note-body.markdown-source { font-size: 16px; }
+}

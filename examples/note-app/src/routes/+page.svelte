@@ -186,7 +186,7 @@
       <p class="review-scope">Browser only. Accounts, Favorites and Archive stay outside scope.</p>
     </aside>
     <div class="live-host" hidden={!isLive}>
-      {#if isReview}<div class="review-live-heading"><h2>Working note app</h2><p>Try saving and recovery.</p></div>{/if}
+      {#if isReview}<div class="review-live-heading"><h2>Working note app</h2></div>{/if}
       <NoteEditor active={isLive} iteration={lastLiveIteration} onEvidence={record} onDirty={(value) => { noteDirty = value; }} /></div>
     {#if stage.kind === 'baseline'}
       <div class="comparison-stage"><div class="canvas-top"><span>One prompt. Many unanswered decisions.</span><div class="text-tabs"><button class:active={comparison === 'baseline'} onclick={() => { comparison = 'baseline'; }}>Naive prompt</button><button class:active={comparison === 'direction'} onclick={() => { comparison = 'direction'; }}>With intent</button></div></div><div class="comparison-image"><img src={comparison === 'baseline' ? '/design/generic-baseline.png' : '/design/visual-notes-concept-v2.png'} alt={comparison === 'baseline' ? 'Generated illustrative baseline: a conventional blue note app with a sidebar, search and editor' : 'Generated illustrated note app proposal with blue landscape covers and a spacious writing pane'} /></div><p class="canvas-caption">Generated design explorations, not a measured model comparison. The following chapters build the live app in iterations.</p></div>
