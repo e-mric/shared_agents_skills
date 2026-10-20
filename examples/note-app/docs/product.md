@@ -35,14 +35,13 @@ It is not a validated commercial note-taking proposition.
 The presenter runs the SvelteKit app locally in a browser. Desktop users scroll
 through twelve chapters beside a pinned canvas; chapter buttons and arrow keys
 provide another route. At 960px and below, explicit chapter navigation and a stacked
-layout make the app usable at narrower widths. Speaker cues and a handoff support
-rehearsal and presentation. The live demo uses ordinary text and controlled failures.
+layout make the app usable at narrower widths. A handoff supports rehearsal and presentation. The live demo uses ordinary text and controlled failures.
 The owning [demo script](demo.md) and [project state](project-state.md) hold rehearsal
 instructions and dated observations.
 
 ## Capabilities and Constraints
 
-- Create, edit, search, explicitly save and reopen plain-text notes in one browser.
+- Create, edit, search, explicitly save and reopen Markdown notes in one browser.
 - Preserve the same mounted editor and unsaved draft across chapter changes.
 - Retain the draft on save failure; offer retry or download and guard dirty navigation.
 - Keep the existing `marginal.notes.v1` storage key. Local persistence is not a backup
@@ -51,7 +50,8 @@ instructions and dated observations.
   text. No runtime image generation, external note transmission or model calls.
 - Explore illustrative team assignments and dated cost assumptions without starting
   agents, switching models or predicting included subscription quota.
-- Accounts, collaboration, rich text and device sync remain outside this milestone.
+- Accounts, collaboration, a WYSIWYG editor, live voice transcription and device sync
+  remain outside this milestone.
 - Hosting/deployment beyond the local preview is undecided. GitHub publication ships
   source, not a deployed app. Broader product-market usefulness remains untested.
 
@@ -147,9 +147,15 @@ Additional acceptance criteria:
 19. At 1280×720, Review shows the comparison, four iteration summaries, review checks
     and navigation together. Returning to Review resets its scroll surfaces while
     preserving the exact unsaved draft.
-20. Give each chapter one short message. Keep supporting explanation in optional
-    Speaker notes; retain local-storage, cost and generated-reference caveats near
-    the relevant decisions.
+20. Give each chapter one short message, with no speaker-notes panel. Retain
+    local-storage, cost and generated-reference caveats near the relevant decisions.
+
+21. Write Markdown with a small formatting toolbar and a sanitized rendered preview.
+    Support headings, emphasis, lists, task lists, quotes, links, fenced code and tables.
+    Preserve the exact Markdown source in the existing note schema and export `.md`.
+    Escape embedded HTML and show images as explicit links, without automatic requests.
+22. Show “Transcribe voice to text · coming soon” as a disabled placeholder. Do not
+    record audio, request microphone access or call a transcription service.
 
 Earlier builder choices of a dependency-free server and a normal app-first screen
 are superseded by the explicit SvelteKit and interactive presentation requests.

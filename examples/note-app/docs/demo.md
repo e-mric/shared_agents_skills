@@ -8,7 +8,7 @@ library. Never clear a browser profile containing notes you want to keep.
 Scroll over the explanation to progress on desktop. The right canvas stays pinned.
 Use chapter buttons or Previous/Next when presenting deliberately. Arrow keys work
 outside text fields, selects and dialogs. On small screens, use chapter navigation.
-“Speaker notes” reveals a cue beside each explanation. Fullscreen depends on the host.
+Fullscreen depends on the host.
 
 | Chapter | Interaction | Point to explain |
 | --- | --- | --- |
@@ -45,7 +45,7 @@ and prebuilt capabilities. They do not generate images, execute code or start ag
 - Try switching notes while dirty. Keep editing must retain the text.
 - A blank new note cannot save. Body-only and title-only notes can save.
 - The failure control interrupts exactly one save and can be cancelled before use.
-- Download draft provides a plain-text copy after an error.
+- Download draft provides a Markdown copy after an error.
 - The note list shows titles consistently. Keyboard focus should remain visible.
 
 ## Limits to say aloud
@@ -69,12 +69,20 @@ The title takes priority if the body mentions another theme.
 
 ## Present with less text
 
-Leave Speaker notes closed for the audience. Each chapter has one message: say it,
-then demonstrate the action. Open Speaker notes only when you need the supporting
-explanation. Review fits the comparison and controls on a 1280×720 display; narrower
+Each chapter has one message: say it, then demonstrate the action.
+Review fits the comparison and controls on a 1280×720 display; narrower
 screens stack the panels. Returning to Review starts its scroll surfaces at the top
 and keeps your draft. Explicit chapter choices remain selected until you scroll again.
 
 Regression rehearsal: type a long unsaved body, scroll it down, choose Refine, then
 Review. Its first line should be visible and its full text unchanged. Interrupt a save
 and retry. Rehearse on the actual presentation display before presenting.
+
+## Markdown and future voice input
+
+Write a heading, a short list and `**bold text**`. Use the formatting buttons or
+Cmd/Ctrl+B and Cmd/Ctrl+I. Switch to Preview to read the formatted note; switch back
+to Write to edit the source. Save, reopen and export `.md` to show that the source
+stays portable. Task checks in Preview reflect the source; edit `[ ]` / `[x]` in Write.
+Images appear as links to avoid automatic remote requests. Embedded HTML is literal.
+The voice-to-text button is a labelled, disabled concept only: no recording or service.

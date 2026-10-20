@@ -220,3 +220,35 @@ this is not accessibility certification. The exact prior critique snapshot was c
 preserving its historical score rather than claiming a new score. No independent
 participant study, physical-device check or screen-reader matrix is claimed. The user
 authorized committing and pushing the comparison, fixes and final fatigue pass.
+
+## Speaker notes removed · 2026-10-19
+
+User requested removal of Speaker notes. Removed the header control, cue panel,
+unused chapter cue content and associated styles. Each chapter keeps its short main
+message and interactive example. This supersedes the optional-notes choice above.
+Svelte diagnostics, 28 tests and production build passed.
+
+## Markdown authoring and voice concept · 2026-10-19
+
+User requested Markdown note-taking and a voice-to-text button without implementation.
+Added Write/Preview, a compact formatting toolbar, bold/italic shortcuts and `.md`
+export. Markdown source stays in the existing body field and storage key; old notes
+need no migration. Marked parses GFM; DOMPurify sanitizes the preview. Raw HTML is
+escaped, and image syntax produces links to prevent automatic remote requests. The
+voice button explicitly says “Transcribe voice to text · coming soon” and is disabled.
+No microphone, audio capture, service calls or new model costs.
+
+All 32 tests, Svelte diagnostics and production build passed. New tests exercise
+Markdown features, unsafe markup/URLs, non-loading images, selection formatting and
+exact source persistence. Browser checks verified formatted content, toolbar selection,
+Review → Design → Review continuity, failed save/retry, reload and actual `.md` export
+with source formatting intact. At 390×844 the editor had no horizontal overflow and
+the voice placeholder stayed disabled. Desktop Review comparison and recovery controls
+remain visible; long Markdown content scrolls inside the editor.
+[Markdown screenshot](evidence/markdown-review.png). Local builder checks, not a
+physical-device or screen-reader study.
+
+Publication authorized on 2026-10-20: Markdown editor, voice-to-text placeholder and
+removal of Speaker notes. All 32 tests, Svelte diagnostics and production build were
+re-run successfully before committing. Browser evidence above remains dated to the
+implementation pass; no new device coverage is claimed.

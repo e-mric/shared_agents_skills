@@ -6,7 +6,7 @@ Focus: one message and one useful interaction per chapter, without concealing li
 | Finding | Change |
 | --- | --- |
 | Introductions repeated the visible app and iteration captions | Cut chapter descriptions from 255 to 97 words total (62% less). |
-| An extra “what changed” paragraph competed with each introduction | Moved it into optional Speaker notes. |
+| An extra “what changed” paragraph competed with each introduction | Removed it from the presentation; the speaker-notes feature was subsequently removed at the user’s request. |
 | Repeated “try it” / “scroll” hints added little after the first chapter | Removed them; navigation and control labels provide the cues. |
 | Review asked the audience to read, compare and coordinate several scroll areas | Compact comparison, four short iteration summaries and visible review controls. |
 

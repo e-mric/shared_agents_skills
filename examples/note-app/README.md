@@ -66,3 +66,12 @@ This example lives under `examples/note-app` in the shared_agents_skills reposit
 The [repository workflow](../../PROJECT_DEVELOPMENT_WORKFLOW.md) and
 [optional agent-team guide](../../docs/optional-agent-teams.md) remain tool-agnostic.
 The application is an optional SvelteKit demonstration of those methods.
+
+### Markdown notes
+
+Write Markdown or use the compact formatting toolbar; Preview renders headings,
+checklists, quotes, links, code and tables. Export `.md` from the editor. Source stays
+in the existing browser-local notes, including after failed saves. Preview escapes
+HTML and sanitizes output; images are explicit links rather than automatic loads.
+“Transcribe voice to text · coming soon” is a disabled placeholder, with no audio or
+transcription implementation.

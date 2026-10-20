@@ -17,7 +17,6 @@
   let criteria = $state<boolean[]>([false, false, false]);
   let review = $state<boolean[]>([false, false, false]);
   let evidence = $state<Record<string, boolean>>({});
-  let showNotes = $state(false);
   let noteDirty = $state(false);
   let ready = $state(false);
   let fullScreenError = $state('');
@@ -144,7 +143,7 @@
 <svelte:head><title>Marginal — an app, built step by step</title><meta name="description" content="An interactive presentation of a shared development workflow, told through a note app that evolves with each iteration." /></svelte:head>
 <svelte:window onkeydown={keyboard} onwheel={resumeScroll} ontouchmove={resumeScroll} onpointerdown={resumeScroll} />
 <a class="skip-link" href="#chapter">Skip to chapter</a>
-<header class="presentation-header"><a href="#chapter" class="wordmark">marginal</a><span class="header-caption">design first → implement → review</span><div class="header-actions"><button onclick={() => { go(0); }}>Restart story</button><button onclick={() => { showNotes = !showNotes; }} aria-pressed={showNotes}>Speaker notes</button><button class="fullscreen" onclick={fullscreen} aria-label="Toggle fullscreen">⛶</button></div></header>
+<header class="presentation-header"><a href="#chapter" class="wordmark">marginal</a><span class="header-caption">design first → implement → review</span><div class="header-actions"><button onclick={() => { go(0); }}>Restart story</button><button class="fullscreen" onclick={fullscreen} aria-label="Toggle fullscreen">⛶</button></div></header>
 {#if fullScreenError}<p role="status" class="fullscreen-message">{fullScreenError}</p>{/if}
 <main id="chapter" class="presentation-main" class:review-layout={isReview}>
   <div class="narrative-track">
@@ -157,7 +156,6 @@
           <p class="chapter-description">{item.description}</p>
           {#if index === 8}<button class="outline reload-check" onclick={reloadCheck} disabled={noteDirty || !evidence.saved}>Reload to check persistence <span aria-hidden="true">↻</span></button>{/if}
           {#if index === 10}<div class="review-list" aria-label="Presenter experience review">{#each ['Save status and next steps are clear', 'List and editor use consistent titles', 'A failed save keeps the draft and allows retry'] as observation, i}<label><input type="checkbox" bind:checked={review[i]} /><span>{observation}</span></label>{/each}</div><button class="outline refine-design" onclick={() => { designView = 'reference'; go(6); }}>Refine the design <span aria-hidden="true">↶</span></button>{/if}
-          {#if showNotes}<aside class="speaker-cue"><p class="eyebrow">PRESENTER CUE</p><p>{item.addition} {item.cue}</p></aside>{/if}
         </div>
       </section>
     {/each}

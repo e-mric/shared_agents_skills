@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
+  import { createMarkdownRenderer, formatMarkdown } from '../markdown.mjs';
   import { coverFor } from '../covers.mjs';
   import { createNotesStore, STORAGE_KEY, type Note, type Draft } from '../notes.mjs';
   let { active = false, iteration = 0, onEvidence = (_key: string) => {}, onDirty = (_dirty: boolean) => {} }: { active?: boolean; iteration: number; onEvidence?: (key: string) => void; onDirty?: (dirty: boolean) => void } = $props();
@@ -12,6 +13,17 @@
   let ready = $state(false);
   let armed = $state(false);
   let search = $state('');
+  let mode = $state<'write' | 'preview'>('write');
+  let renderMarkdown = $state<(source: string) => string>(() => '');
+  let bodyField: HTMLTextAreaElement;
+  const preview = $derived(mode === 'preview' ? renderMarkdown(draft.body) : '');
+  async function format(kind: string) {
+    const edit = formatMarkdown(draft.body, bodyField.selectionStart, bodyField.selectionEnd, kind);
+    draft.body = edit.value;
+    await tick();
+    bodyField.focus();
+    bodyField.setSelectionRange(edit.selectionStart, edit.selectionEnd);
+  }
   const filteredNotes = $derived(notes.filter(note => `${note.title} ${note.body}`.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())));
   const editorCover = $derived(coverFor(original ?? { title: '', body: '' }));
   let dialog: HTMLDialogElement;
@@ -32,7 +44,7 @@
     pending = action; dialog.showModal();
   }
   function newNote() {
-    navigate(() => { original = null; draft = { id: crypto.randomUUID(), title: '', body: '' }; failure = null; titleField?.focus(); });
+    navigate(() => { mode = 'write'; original = null; draft = { id: crypto.randomUUID(), title: '', body: '' }; failure = null; titleField?.focus(); });
   }
   function load() {
     try {
@@ -66,8 +78,8 @@
     });
   }
   function download() {
-    const url = URL.createObjectURL(new Blob([draft.title + '\n\n' + draft.body], { type: 'text/plain;charset=utf-8' }));
-    const a = document.createElement('a'); a.href = url; a.download = 'marginal-draft.txt'; a.click();
+    const url = URL.createObjectURL(new Blob([(draft.title ? '# ' + draft.title + '\n\n' : '') + draft.body], { type: 'text/markdown;charset=utf-8' }));
+    const a = document.createElement('a'); a.href = url; a.download = 'marginal-draft.md'; a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     onEvidence('draft-downloaded');
   }
@@ -80,6 +92,9 @@
   });
   $effect(() => { if (iteration < 2) { armed = false; store.cancelFailure(); } });
   function shortcut(event: KeyboardEvent) {
+    if (active && event.target === bodyField && (event.ctrlKey || event.metaKey) && ['b', 'i'].includes(event.key.toLowerCase())) {
+      event.preventDefault(); void format(event.key.toLowerCase() === 'b' ? 'bold' : 'italic'); return;
+    }
     if (active && (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's' && !dialog?.open) { event.preventDefault(); save(); }
   }
   function refresh(event: StorageEvent) {
@@ -91,6 +106,7 @@
     } catch (error) { loadFailure = (error as Error).message; }
   }
   onMount(() => {
+    renderMarkdown = createMarkdownRenderer(window);
     load(); window.addEventListener('storage', refresh);
     return () => window.removeEventListener('storage', refresh);
   });
@@ -132,8 +148,16 @@
       {/if}
       {#if iteration >= 2}<div class="editor-cover"><img src={editorCover} alt="" /></div>{/if}
       <label class="sr-only" for="note-title">Note title</label><textarea class="note-title" rows="2" id="note-title" bind:this={titleField} bind:value={draft.title} disabled={!ready} placeholder="Untitled note" maxlength="160" autocomplete="off"></textarea>
-      <label class="sr-only" for="note-body">Note text</label><textarea class="note-body" id="note-body" bind:value={draft.body} disabled={!ready} placeholder="What’s on your mind?" spellcheck="true"></textarea>
-      <div class="note-word-count">{words} {words === 1 ? 'word' : 'words'}</div>
+      <div class="markdown-controls">
+        <div class="editor-modes" role="group" aria-label="Editor view"><button aria-pressed={mode === 'write'} onclick={() => { mode = 'write'; }}>Write</button><button aria-pressed={mode === 'preview'} onclick={() => { mode = 'preview'; }}>Preview</button></div>
+        <button class="voice-placeholder" disabled title="Voice-to-text transcription is coming soon">Transcribe voice to text · coming soon</button>
+      </div>
+      {#if mode === 'write'}<div class="markdown-tools" role="group" aria-label="Markdown formatting">
+        {#each [{kind: 'heading', label: 'Heading', text: 'H'}, {kind: 'bold', label: 'Bold', text: 'B'}, {kind: 'italic', label: 'Italic', text: 'I'}, {kind: 'list', label: 'Bullet list', text: '≡'}, {kind: 'task', label: 'Task list', text: '☑'}, {kind: 'link', label: 'Link', text: '↗'}, {kind: 'code', label: 'Inline code', text: '</>'}] as tool}<button aria-label={tool.label} title={tool.label} disabled={!ready} onclick={() => format(tool.kind)}>{tool.text}</button>{/each}
+      </div>{/if}
+      <label class="sr-only" for="note-body">Note text</label><textarea hidden={mode !== 'write'} class="note-body markdown-source" id="note-body" bind:this={bodyField} bind:value={draft.body} disabled={!ready} placeholder="Write in Markdown…" spellcheck="true"></textarea>
+      <section class="markdown-preview" hidden={mode !== 'preview'} aria-label="Markdown preview">{#if draft.body.trim()}{@html preview}{:else}<p class="preview-empty">Your formatted note will appear here.</p>{/if}</section>
+      <div class="note-word-count">{words} {words === 1 ? 'word' : 'words'}<button onclick={download} disabled={!ready || !hasText}>Export .md</button></div>
     </section>
   </div>
   {#if iteration >= 2}
