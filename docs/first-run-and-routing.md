@@ -30,11 +30,14 @@ Use it when setting up a project or introducing the workflow to a new user.
 | Review | Reviewer | Brief/design, diff, test results and remaining uncertainty | Prioritized findings or scoped acceptance; route fixes back |
 | Doc | The role owning the topic | Current authoritative document and verified change | Updated owning document, with uncertainty preserved |
 
-Research can support any phase. Visual Imagine work retains **generate design →
-implement → review**. Check image-generation capability first. If unavailable, ask
-whether the user wants a prompt for an external image tool, then accept the returned
-image as a proposed reference. Use the [visual fallback](optional-design-writing-skills.md#image-generation-fallback)
-for the prompt and approval handoff. Skill names are selected from the host's actual catalog:
+Research can support any phase. Visual Imagine work follows **design first →
+implement → review**. Ask whether the user already has a Figma design or another
+reference. For Figma, check whether its MCP connection is available and can access the
+selected file; otherwise offer setup help or request exports. Follow the
+[existing-design handoff](optional-design-writing-skills.md#existing-design-figma-or-exported-reference).
+If a new design is needed, check image-generation capability; when unavailable or
+declined, offer the [external prompt and image attachment fallback](optional-design-writing-skills.md#image-generation-fallback).
+Skill names are selected from the host's actual catalog:
 for example imagegen for a visual reference, diagnosing-bugs for a failure, or
 Impeccable for readability. A keyword neither installs a skill nor grants permission
 to message another conversation.

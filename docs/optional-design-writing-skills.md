@@ -1,6 +1,6 @@
 # Optional design and writing skills
 
-Reviewed 2026-10-18. Use these when the task needs visual direction, interface refinement
+Reviewed 2026-10-22. Use these when the task needs visual direction, interface refinement
 or clearer prose. The shared workflow works without them and does not install anything.
 
 | Need | Optional skill | When to use it |
@@ -12,7 +12,7 @@ or clearer prose. The shared workflow works without them and does not install an
 ## Apply one method at a time
 
 These methods support the shared **design first → implement → review** loop. Generate
-the visual reference before building a new app screen or landing/showcase page; use
+or select the visual reference before building a new app screen or landing/showcase page; use
 the review findings to decide what the next design iteration needs. Small fixes can
 reuse an accepted reference.
 
@@ -28,6 +28,23 @@ reuse an accepted reference.
    interfaces and complete the user journey; compare edited prose with its source.
 5. Record the upstream revision/version when practical, the changes, verification and
    remaining limits. Treat detector findings as prompts to investigate, not quality scores.
+
+## Existing design: Figma or exported reference
+
+Before generating a design, ask whether the user already has a Figma design or another
+reference they want to use. Reuse an accepted source rather than asking again.
+
+1. For Figma, ask for the file/frame link and whether a Figma MCP connection is installed
+   and connected in their host. Inspect available tools first when possible; installation
+   alone does not establish access to that file.
+2. If connected, use supported tools to inspect the relevant frames, assets, components
+   and design tokens. Record the source/frame and any access or inspection limits.
+3. If unavailable or access fails, offer connection/setup help or ask for exported
+   screenshots/assets. A link alone is not evidence the design was inspected. Setup
+   follows the host's supported process; nothing is installed automatically.
+4. Review the supplied design against the brief, mobile layout and essential states.
+   Record the accepted reference and unresolved gaps before implementation. Use this
+   reference again in Review; image generation is optional for missing directions/assets.
 
 ## Image-generation fallback
 

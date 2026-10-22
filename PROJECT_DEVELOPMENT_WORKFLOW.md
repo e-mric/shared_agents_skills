@@ -195,9 +195,12 @@ For new visual surfaces and substantial redesigns, use this loop for both app sc
 and landing/showcase pages. It works with one agent or a team and does not depend on
 a particular model, skill or framework.
 
-1. **Design first.** Generate a visual design from the brief, real content and known
-   constraints before implementing the interface. Use image generation when available;
-   a mockup or prototype can make the direction concrete when it is not. Check hierarchy,
+1. **Design first.** Ask whether an existing Figma design or other reference should be
+   used; follow the [design-source handoff](docs/optional-design-writing-skills.md#existing-design-figma-or-exported-reference),
+   including the MCP access check or export fallback. When a new direction is needed,
+   generate a visual design from the brief, real content and known constraints before
+   implementation. Use available image generation or the external prompt/image fallback;
+   a mockup or prototype can also make the direction concrete. Check hierarchy,
    key states, narrow layouts and accessibility against the brief. Record the selected
    direction and keep proposals distinct from accepted scope.
 2. **Implement.** Use the design as a reference and deliver one working outcome at a
