@@ -1,6 +1,6 @@
 # Reusable project development workflow
 
-Version: 2026-10-18. Use this as a setup request in any project, adapted to that
+Version: 2026-10-22. Use this as a setup request in any project, adapted to that
 project's scale, stack, risks and existing conventions. It is a reusable instruction
 document, not an automatically installed skill or a global configuration change.
 
@@ -15,6 +15,12 @@ Attach this file to a chat opened in the target project, or ask:
 Give the actual file path or attachment when invoking it. This document does not
 grant access to other repositories, authorize messages to people or chats, or
 authorize deployments. Work within the current user's request and permissions.
+
+On first use, follow [first-run explanations and keyword routing](docs/first-run-and-routing.md):
+explain relevant skills, ask once for selection/team preferences, prepare role context
+and create conversations only when requested and supported. Reuse existing preferences.
+The portable core works by itself. [Execution and tracking adapters](docs/optional-execution-and-tracking.md)
+are optional and do not change the authority of project guidance or shared documents.
 
 ## Objective
 
@@ -285,6 +291,8 @@ actionable implications; do not invent findings or assume demand from published 
 Read the project's agent guidance, wiki index and current state. Deliver [one accepted
 feature/fix] against [spec/ticket] in [branch/worktree]. Inspect status and preserve
 unrelated work. Establish constraints, acceptance criteria, checkpoints and checks.
+Before starting, follow the technology recommendation and single-agent/subagent choice
+in docs/first-run-and-routing.md#before-implementation; reuse recorded decisions.
 Keep architecture/dependencies coherent; test meaningful behaviour and regressions.
 For UI changes, implement against the selected design and carry accepted intent through
 the complete flow and recovery states. Compare the rendered result with that reference;

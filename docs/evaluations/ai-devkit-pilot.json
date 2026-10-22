@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-22",
+  "upstream": {
+    "version": "0.70.1",
+    "revision": "be14ea1e74e6aec24cb156a8d05f50870aa9a426",
+    "npm_integrity": "sha512-F8iPE9tqEHG9Y5RXLTkJRkg3YwyVTFS6IcluF81dTu88xaq8nNzUjCAaIure39DEjjJnGrQj/mwjPwGPQYUewQ=="
+  },
+  "fixture": "Disposable copy of examples/note-app at 6df41d4 plus existing uncommitted closing-step cleanup; no browser note data copied.",
+  "commands": {
+    "scaffold": "ai-devkit init -e codex -p requirements,design,planning,implementation,testing --yes",
+    "feature_lint": "ai-devkit lint --feature markdown-export-heading --json",
+    "verification": [
+      "node --test test/markdown.test.mjs",
+      "npm run check",
+      "npm test",
+      "npm run build",
+      "git diff --check"
+    ]
+  },
+  "results": {
+    "feature_lint_before": {
+      "exit_code": 1
+    },
+    "create_feature_branch": {
+      "exit_code": 0
+    },
+    "feature_lint_after": {
+      "exit_code": 0
+    },
+    "regression_before_fix": {
+      "exit_code": 1
+    },
+    "svelte_check": {
+      "exit_code": 0
+    },
+    "tests": {
+      "exit_code": 0
+    },
+    "build": {
+      "exit_code": 0
+    },
+    "diff_check": {
+      "exit_code": 0
+    }
+  },
+  "feature_lint_before": {
+    "ok": 5,
+    "miss": 6,
+    "warn": 0,
+    "requiredFailures": 6
+  },
+  "feature_lint_after": {
+    "ok": 12,
+    "miss": 0,
+    "warn": 0,
+    "requiredFailures": 0
+  },
+  "test_summary": {
+    "passed": 33,
+    "failed": 0,
+    "baseline_existing_tests": 32,
+    "new_export_regressions": 1
+  },
+  "invariants": {
+    "storage_source_unchanged": true,
+    "source_app_changed": false,
+    "model_calls": 0,
+    "agent_sessions_started": 0,
+    "phase_execution": "manual by evaluator; upstream CLI scaffold/lint executed; lifecycle and session transport not executed",
+    "original_app_snapshot_files_unchanged": 70
+  },
+  "not_executed": [
+    "dev-lifecycle skill",
+    "agent start/list/detail/send",
+    "provider/model calls",
+    "global setup/hooks/MCP",
+    "memory service",
+    "aGiTrack",
+    "browser download journey for fixture-only change"
+  ]
+}

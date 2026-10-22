@@ -1,0 +1,67 @@
+diff --git a/src/lib/components/NoteEditor.svelte b/src/lib/components/NoteEditor.svelte
+index 03d79f9..782338d 100644
+--- a/src/lib/components/NoteEditor.svelte
++++ b/src/lib/components/NoteEditor.svelte
+@@ -1,6 +1,6 @@
+ <script lang="ts">
+   import { onMount, tick } from 'svelte';
+-  import { createMarkdownRenderer, formatMarkdown } from '../markdown.mjs';
++  import { createMarkdownRenderer, formatMarkdown, exportMarkdown } from '../markdown.mjs';
+   import { coverFor } from '../covers.mjs';
+   import { createNotesStore, STORAGE_KEY, type Note, type Draft } from '../notes.mjs';
+   let { active = false, iteration = 0, onEvidence = (_key: string) => {}, onDirty = (_dirty: boolean) => {} }: { active?: boolean; iteration: number; onEvidence?: (key: string) => void; onDirty?: (dirty: boolean) => void } = $props();
+@@ -78,7 +78,7 @@
+     });
+   }
+   function download() {
+-    const url = URL.createObjectURL(new Blob([(draft.title ? '# ' + draft.title + '\n\n' : '') + draft.body], { type: 'text/markdown;charset=utf-8' }));
++    const url = URL.createObjectURL(new Blob([exportMarkdown(draft.title, draft.body)], { type: 'text/markdown;charset=utf-8' }));
+     const a = document.createElement('a'); a.href = url; a.download = 'marginal-draft.md'; a.click();
+     setTimeout(() => URL.revokeObjectURL(url), 1000);
+     onEvidence('draft-downloaded');
+diff --git a/src/lib/markdown.d.mts b/src/lib/markdown.d.mts
+index 766aa4d..ec826b3 100644
+--- a/src/lib/markdown.d.mts
++++ b/src/lib/markdown.d.mts
+@@ -1,2 +1,4 @@
+ export function createMarkdownRenderer(window: Window): (source: string) => string;
+ export function formatMarkdown(text: string, start: number, end: number, format: string): { value: string; selectionStart: number; selectionEnd: number };
++
++export function exportMarkdown(title: string, body: string): string;
+diff --git a/src/lib/markdown.mjs b/src/lib/markdown.mjs
+index 199e147..c889178 100644
+--- a/src/lib/markdown.mjs
++++ b/src/lib/markdown.mjs
+@@ -43,3 +43,8 @@ export function formatMarkdown(text, start, end, format) {
+   }
+   return { value, selectionStart, selectionEnd };
+ }
++
++export function exportMarkdown(title, body) {
++  const heading = title.trim().replace(/\s+/gu, " ");
++  return (heading ? "# " + heading + "\n\n" : "") + body;
++}
+diff --git a/test/markdown.test.mjs b/test/markdown.test.mjs
+index 1b2d943..c651836 100644
+--- a/test/markdown.test.mjs
++++ b/test/markdown.test.mjs
+@@ -1,7 +1,7 @@
+ import { test } from 'node:test';
+ import assert from 'node:assert/strict';
+ import { JSDOM } from 'jsdom';
+-import { createMarkdownRenderer, formatMarkdown } from '../src/lib/markdown.mjs';
++import { createMarkdownRenderer, formatMarkdown, exportMarkdown } from '../src/lib/markdown.mjs';
+ import { createNotesStore } from '../src/lib/notes.mjs';
+ const { window } = new JSDOM('');
+ const render = createMarkdownRenderer(window);
+@@ -30,3 +30,10 @@ test('saving and reopening preserves exact Markdown source', () => {
+   store.save({id:'markdown-note',title:'Markdown',body},null);
+   assert.equal(createNotesStore(()=>storage).load()[0].body,body);
+ });
++
++test('export uses one heading line and retains exact body', () => {
++  const body = '```js\nconst x = 1;\n```\n\n- [ ] Keep me';
++  assert.equal(exportMarkdown('  A thought\ncontinued  ', body), '# A thought continued\n\n' + body);
++  assert.equal(exportMarkdown('   ', body), body);
++  assert.equal(exportMarkdown('', body), body);
++});

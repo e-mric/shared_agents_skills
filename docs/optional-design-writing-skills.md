@@ -29,6 +29,29 @@ reuse an accepted reference.
 5. Record the upstream revision/version when practical, the changes, verification and
    remaining limits. Treat detector findings as prompts to investigate, not quality scores.
 
+## Image-generation fallback
+
+Check what the current host can actually generate. When image generation is available,
+use the selected skill and the agreed brief. Availability is a tool capability, not a
+property guaranteed by a model name or subscription.
+
+When unavailable or declined:
+
+1. Ask: “Would you like a ready-to-copy design prompt for an image tool you use, such
+   as Higgsfield or another tool?” Let the user choose the destination.
+2. If yes, provide a self-contained prompt: app purpose, approved scope, desktop/mobile
+   layout, real sample content, essential states, visual direction and exclusions.
+   Use public or fictional sample data suitable for that destination.
+3. Ask the user to attach the generated image here. Keep the Imagine step awaiting
+   that reference; continue independent requirements work if useful.
+4. Inspect the attached image, discuss material gaps and ask the user to accept the
+   direction or revise it. Record the chosen image and brief in project context before
+   implementation. Features pictured outside scope remain proposals.
+
+The prompt is portable; do not claim a particular external tool or model was invoked.
+If the user prefers a wireframe or code-first route instead, record that explicit
+exception and the intended review rather than silently skipping the reference.
+
 ## Portable boundaries
 
 Skills provide guidance; they do not grant permission to publish, install globally,
