@@ -1,6 +1,7 @@
 export type Book = { id: string; title: string; author: string; read: boolean };
 export const STORAGE_KEY: string;
 export const demoBooks: Book[];
+export function filterBooks(books: readonly Book[], filter: 'All' | 'Unread' | 'Read', query: string): Book[];
 export function createBookStore(getStorage: () => Pick<Storage, 'getItem' | 'setItem'>): {
   load(): Book[];
   seedDemo(): Book[];

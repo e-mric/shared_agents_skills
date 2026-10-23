@@ -14,5 +14,6 @@ the note app and unrelated repository work.
   journey on desktop and mobile. Record expected/observed results and limits.
 - Each phase reads the owning documents and exact source/revision. Update the owning
   page rather than copying chat transcripts. Keep one writer per file.
-- Roles run sequentially in this chat. No separate agent sessions, global integrations,
-  automatic deployment or publication are implied by the four workflow keywords.
+- Default to sequential roles. Use subagents or a cross-provider execution adapter only
+  when the user chooses that mode; keep role contracts and shared documents portable.
+  The four workflow keywords imply no global integration, deployment or publication.

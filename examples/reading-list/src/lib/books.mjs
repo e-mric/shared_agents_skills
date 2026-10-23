@@ -1,5 +1,13 @@
 export const STORAGE_KEY = 'next-chapter.books.v1';
 
+export function filterBooks(books, filter, query) {
+  const search = query.trim().toLowerCase();
+  return books.filter(book =>
+    (filter === 'All' || (filter === 'Read' ? book.read : !book.read)) &&
+    (book.title.toLowerCase().includes(search) || book.author.toLowerCase().includes(search))
+  );
+}
+
 export const demoBooks = [
   { id: 'creative-act', title: 'The Creative Act', author: 'Rick Rubin', read: false },
   { id: 'earthsea', title: 'A Wizard of Earthsea', author: 'Ursula K. Le Guin', read: false },

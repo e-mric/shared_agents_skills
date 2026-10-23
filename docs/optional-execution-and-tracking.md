@@ -46,9 +46,13 @@ product truth. A custom docs directory changes a directory, not this phase struc
 - Keep local searchable memory optional. Verify facts against source and shared docs;
   a local SQLite database is not cross-machine synchronization or shared chat context.
 
-No live session map, model assignment or automatic keyword router was installed by
-this evaluation. Future activation needs a bounded live-provider pilot, with stated
-usage limits and a verified response from the intended session.
+The initial evaluation installed no live routing. A subsequent
+[reading-list live trial](evaluations/reading-list-live-pilot.md) on 2026-10-23 verified
+AI DevKit delivery to a Codex implementation session, a Claude Code review session
+and a focused Codex fix pass. It required a permission preflight, local discovery
+fallback and independent coordinator verification. This supports optional bounded CLI
+use; it does not establish desktop-chat control, autonomous lifecycle completion or a
+global keyword router. Keep these setup and permission limits explicit.
 
 ## aGiTrack
 

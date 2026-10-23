@@ -1,11 +1,13 @@
 <script lang="ts">
   import { onMount, tick } from 'svelte';
-  import { createBookStore, STORAGE_KEY, type Book } from '../lib/books.mjs';
+  import { createBookStore, filterBooks, STORAGE_KEY, type Book } from '../lib/books.mjs';
   import '../style.css';
 
   const store = createBookStore(() => window.localStorage);
   const filters = ['All', 'Unread', 'Read'] as const;
   let filter = $state<(typeof filters)[number]>('All');
+  let query = $state('');
+  let searchField = $state<HTMLInputElement>();
   let books = $state<Book[]>([]);
   let ready = $state(false);
   let adding = $state(false);
@@ -17,7 +19,9 @@
   let titleField = $state<HTMLInputElement>();
   let addButton = $state<HTMLButtonElement>();
   const readCount = $derived(books.filter(book => book.read).length);
-  const visibleBooks = $derived(books.filter(book => filter === 'All' || (filter === 'Read' ? book.read : !book.read)));
+  const filterCount = $derived(filter === 'All' ? books.length : filter === 'Read' ? readCount : books.length - readCount);
+  const searchActive = $derived(query.trim().length > 0);
+  const visibleBooks = $derived(filterBooks(books, filter, query));
   const cover = (id: string) => [...id].reduce((sum, char) => sum + char.charCodeAt(0), 0) % 4;
 
   function load() {
@@ -38,13 +42,17 @@
     adding = false; title = ''; author = ''; titleError = false;
     await tick(); addButton?.focus();
   }
+  function clearSearch() {
+    query = '';
+    searchField?.focus();
+  }
   async function save(event: SubmitEvent) {
     event.preventDefault();
     if (!title.trim()) { titleError = true; titleField?.focus(); return; }
     try {
       books = store.add({ id: crypto.randomUUID(), title, author });
       announcement = `Added ${title.trim()}.`;
-      error = ''; filter = 'All'; await cancel();
+      error = ''; filter = 'All'; query = ''; await cancel();
     } catch {
       error = 'This book wasn’t saved. Your text is still here. Check that browser storage has space, then try Save book again.';
     }
@@ -78,16 +86,22 @@
   </header>
   <main id="books">
     <div class="list-heading"><h1>Reading list</h1><p>{books.length} {books.length === 1 ? 'book' : 'books'} <span aria-hidden="true">·</span> {readCount} read</p></div>
+    <div class="search-field">
+      <label for="book-search">Search title or author</label>
+      <input id="book-search" type="search" bind:this={searchField} bind:value={query} disabled={!ready} autocomplete="off" aria-describedby={ready && searchActive ? 'search-results' : undefined} />
+    </div>
     <div class="filters" role="group" aria-label="Filter books">
       {#each filters as option}<button aria-pressed={filter === option} onclick={() => { filter = option; }}>{option}</button>{/each}
     </div>
     <p class="sr-only" role="status">{announcement}</p>
+    <p id="search-results" class="search-results" class:sr-only={!ready || !searchActive} role="status">{ready && searchActive ? `Showing ${visibleBooks.length} of ${filterCount} ${filterCount === 1 ? 'book' : 'books'} in the ${filter} filter.` : ''}</p>
     {#if error}<div class="error" role="alert"><p>{error}</p>{#if !ready}<button onclick={load}>Try opening the list again</button>{/if}</div>{/if}
     {#if !ready && !error}<p class="empty">Opening your books…</p>
     {:else if ready && !books.length}<div class="empty"><h2>Your next chapter starts here.</h2><p>Add a book you’ve been meaning to read.</p>{#if !adding}<button class="text-button" onclick={showForm}>Add your first book</button>{/if}</div>
+    {:else if ready && searchActive && !visibleBooks.length}<div class="empty"><h2>No matching books.</h2><p>Try another title or author{filter === 'All' ? '.' : `, or switch from ${filter} to All.`}</p><button class="text-button" onclick={clearSearch}>Clear search</button></div>
     {:else if ready && !visibleBooks.length}<div class="empty"><h2>{filter === 'Read' ? 'Good stories await.' : 'All caught up.'}</h2><p>{filter === 'Read' ? 'Books you mark as read will appear here.' : 'There are no unread books in your list.'}</p><button class="text-button" onclick={() => { filter = 'All'; }}>Show all books</button></div>
     {:else}
-      <ul class="book-list" aria-label={`${filter} books`}>
+      <ul class="book-list" aria-label={searchActive ? `Search results in ${filter} books` : `${filter} books`}>
         {#each visibleBooks as book (book.id)}
           <li class:finished={book.read}>
             <svg class="book-cover" data-cover={cover(book.id)} aria-hidden="true" viewBox="0 0 72 100" fill="none">
