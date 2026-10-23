@@ -33,8 +33,8 @@ to use the workflow.
 chapters. A pinned note app gains writing, saving and recovery as the story progresses.
 The Design chapter shows a generated reference; a loop navigator connects it to the
 live implementation and review, with a return path for the next design iteration.
-It includes an illustrative naive-prompt comparison, optional team/cost examples and
-presenter cues. The [presentation script](examples/note-app/docs/demo.md) guides a live demo.
+It includes an illustrative naive-prompt comparison and optional team/cost examples.
+The [presentation script](examples/note-app/docs/demo.md) guides a live demo.
 
 With Node 22.12 or newer:
 

@@ -17,13 +17,13 @@ Fullscreen depends on the host.
 | Guidance | Choose a chat role | Roles focus tasks; they do not require four agents. |
 | Context | Switch document tabs | Guidance, product decisions and current state have distinct owners. |
 | Methods | Choose a question | Match a method to the task and inspect available skills. |
-| Team | Select a plan, workload and billing view | Ask before delegation. Distinguish estimates, credits and quota. |
-| Design | View Generated design, then Acceptance criteria | Generate a direction before implementing; an image is a reference, not a working app. |
-| Write | Click New, enter a title and body | The first iteration is an editor with a draft in memory. |
+| Team | Choose one agent or subagents; explore roles and costs | Ask about delegation and reuse the preference. Distinguish estimates, credits and quota. |
+| Design | Choose Figma or generation; explore MCP/export and external-image fallbacks | Accept an existing reference or generate one, then review it before implementation. |
+| Write | Open Before building; compare browser-only vs sync needs, choose agent mode, then close and write | Explain and confirm technologies and team before building. |
 | Save | Save, switch notes, reopen, then use the reload check | Persistence and truthful status form a complete outcome. |
 | Recover | Interrupt next save, edit, save, then retry | The failed write keeps the draft and prior saved version. |
 | Review | Inspect the journey, tick observed criteria, then choose Refine the design | Compare the result with the reference and return to design where changes are needed. |
-| Handoff | Download or read the handoff | Report the outcome, actual interactions and their limits. |
+| Handoff | Recap the observed interactions | Name the next step; open the shared workflow for more detail. |
 
 In Review, compare the generated reference on the left with the functioning note app
 on the right. The iteration summary names what Write, Save, Recover and Review added.
@@ -86,3 +86,17 @@ to Write to edit the source. Save, reopen and export `.md` to show that the sour
 stays portable. Task checks in Preview reflect the source; edit `[ ]` / `[x]` in Write.
 Images appear as links to avoid automatic remote requests. Embedded HTML is literal.
 The voice-to-text button is a labelled, disabled concept only: no recording or service.
+
+## Preparation choices
+
+Design opens with a source choice. Try Figma with/without MCP access, then generation
+in the host or an external tool. The external path offers a portable prompt and asks
+for the generated image to be attached and reviewed. The Generated design tab still
+shows this demo’s real reference; no Figma file is imported by these example controls.
+
+In Write, expand “Before building: technologies & team”. Browser-only needs recommend
+SvelteKit + TypeScript, plain CSS/local artwork and browser storage. Sync needs explain
+the added backend/authentication/database decision. Confirm or adjust recommendations
+with the user. Choose one agent or a small team; Explore roles and costs carries that
+selection to Team. Close the panel to return space to the same editor. Choices survive
+chapter changes and reload in this tab; they do not change the app stack or start agents.

@@ -269,3 +269,52 @@ the sticky save row. Source detector scan returned no findings; no accessibility
 certification or independent user testing is implied. The user authorized committing
 and pushing these refinements on 2026-10-20. All 32 tests, diagnostics and production
 build were re-run successfully before publication.
+
+## Shorter closing step · 2026-10-20
+
+Removed the screenshot-highlighted handoff report, download/copy controls, presenter
+observation count and repeated limits paragraph at the user's request. The existing
+short interaction summary and shared-workflow link remain. Removed unused report
+state, generation and styles. Notes and Markdown export are unchanged.
+
+Verification: all 32 tests, Svelte diagnostics and production build passed. Browser
+inspection confirmed the closing step retains its short summary/link and no longer
+contains report, count or download/copy controls. [Screenshot](evidence/closing-summary.png).
+Changes remain local.
+
+## Design sources and implementation choices · 2026-10-22
+
+Extended the existing twelve chapters without changing chapter IDs or the mounted
+editor. Design now starts with Figma vs generation, connected/unavailable MCP branches,
+host vs external generation and an optional portable prompt. The real generated
+reference and acceptance criteria remain accessible. Illustrative choices never claim
+a real connection, import or image-generation run.
+
+Write has an expandable technologies/team panel: SvelteKit + TypeScript, plain CSS/local
+artwork and browser storage for local needs; a separate backend/auth/database decision
+for sync. One-agent/team selection shares the existing plan state and links to its roles
+and dated cost example. Selections are stored in the existing session preferences;
+legacy session data remains valid. Note storage and source are unchanged.
+
+Browser review found that native dropdown interaction/layout changes could reactivate
+the scroll observer and select another chapter. Canvas focus now pauses it, scrolling
+inside the canvas leaves it paused, and a restored explicit chapter starts paused.
+Scrolling the narrative still resumes progression.
+
+Verification: all 32 tests, Svelte diagnostics (zero errors/warnings), production build
+and diff whitespace checks passed. Desktop 1280×720 and phone 390×844 checks covered
+Figma export fallback, external prompt, technology scenarios and one-agent/team choice.
+The team plan carried to the cost chapter; the exact existing Markdown title/body
+survived chapter navigation. Phone had no horizontal page overflow; console errors
+were absent. No existing note was edited or saved during this pass. Expanded mobile
+content uses ordinary scrolling; physical devices and screen readers remain untested.
+Impeccable's final detector flagged only the existing Markdown blockquote border, which
+is a conventional quote marker outside this change; retained as-is.
+Evidence: [design source](evidence/design-source-choices.png),
+[technologies and team](evidence/build-choices.png). Changes remain local.
+
+Publication authorized on 2026-10-23 for the interactive design-source, technology and
+optional subagent choices, including the pending shorter closing step. All 32 tests,
+Svelte diagnostics (zero errors/warnings), production build and whitespace checks
+passed again before committing. Browser observations above remain scoped to the
+implementation review; no additional device coverage is claimed for publication.

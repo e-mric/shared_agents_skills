@@ -35,7 +35,7 @@ It is not a validated commercial note-taking proposition.
 The presenter runs the SvelteKit app locally in a browser. Desktop users scroll
 through twelve chapters beside a pinned canvas; chapter buttons and arrow keys
 provide another route. At 960px and below, explicit chapter navigation and a stacked
-layout make the app usable at narrower widths. A handoff supports rehearsal and presentation. The live demo uses ordinary text and controlled failures.
+layout make the app usable at narrower widths. A concise closing summary supports rehearsal and presentation. The live demo uses ordinary text and controlled failures.
 The owning [demo script](demo.md) and [project state](project-state.md) hold rehearsal
 instructions and dated observations.
 
@@ -48,6 +48,9 @@ instructions and dated observations.
   or device sync; simultaneous cross-tab writes are not transactional.
 - Select decorative covers locally from five pre-generated themes using saved note
   text. No runtime image generation, external note transmission or model calls.
+- Explore existing Figma references (MCP access or exports), host/external image
+  generation, technology recommendations and an optional subagent choice. These are
+  teaching controls; no design import, tool connection or scaffolding runs.
 - Explore illustrative team assignments and dated cost assumptions without starting
   agents, switching models or predicting included subscription quota.
 - Accounts, collaboration, a WYSIWYG editor, live voice transcription and device sync
@@ -131,7 +134,8 @@ Additional acceptance criteria:
     starting agents or modifying account settings. State token assumptions and sources.
 13. Document tabs, role starters, scope exploration and acceptance criteria are interactive.
     Review checkboxes are presenter observations, not automatic tests.
-14. A downloadable handoff records observed browser interactions and limitations.
+14. The closing step shows a concise summary of observed interactions and links to
+    the shared workflow, without a generated handoff report or download controls.
 15. Illustrations appear progressively: library covers in Save, a matching editor cover
     in Recover, and final editorial typography in Review. Search filters saved notes.
 16. Select from the pre-generated cover library locally using saved note text, with
