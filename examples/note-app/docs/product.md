@@ -51,6 +51,9 @@ instructions and dated observations.
 - Explore existing Figma references (MCP access or exports), host/external image
   generation, technology recommendations and an optional subagent choice. These are
   teaching controls; no design import, tool connection or scaffolding runs.
+- Replay the recorded Codex implementation → Claude review → Codex fixes trial,
+  with coordinator verification and AI DevKit as an optional message adapter. Detailed
+  evidence/limits are disclosed on request; the replay launches no agents.
 - Explore illustrative team assignments and dated cost assumptions without starting
   agents, switching models or predicting included subscription quota.
 - Accounts, collaboration, a WYSIWYG editor, live voice transcription and device sync

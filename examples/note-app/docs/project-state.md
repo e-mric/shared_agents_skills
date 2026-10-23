@@ -318,3 +318,37 @@ optional subagent choices, including the pending shorter closing step. All 32 te
 Svelte diagnostics (zero errors/warnings), production build and whitespace checks
 passed again before committing. Browser observations above remain scoped to the
 implementation review; no additional device coverage is claimed for publication.
+
+## Simple cross-provider replay · 2026-10-23
+
+Team now defaults to a three-step replay of the published reading-list search trial:
+Codex builds, Claude checks, Codex fixes. Each step shows one short explanation and
+its handoff. AI DevKit is explicitly optional; a coordinator directed the messages
+and verified the fixes. Evidence/permission limits sit behind an optional disclosure.
+No new agent run, global integration, model call or cost claim is triggered by replay.
+The existing hypothetical cost plans remain in the separate Cost examples view.
+
+Removed the Understand chapter's collaboration checkbox, explanatory branch, state
+and styles at the user's request to keep the brief simple. All twelve chapter IDs,
+existing model-plan state, storage and the mounted editor are preserved.
+
+Verification: Svelte diagnostics reported zero errors/warnings, all 32 tests and the
+production build passed. Browser checks at 1280×720 and 390×844 exercised the three
+steps (including keyboard Enter), optional evidence, switching to cost examples and
+removal of the collaboration prompt. Editor title/body remained exact through the
+Team/Write round trip without editing or saving any notes. Phone controls measured
+44px tall and there was no horizontal page overflow. No physical-device or screen-reader
+coverage is claimed. Changes remain local.
+
+Final desktop fit: canvas client/scroll heights both 471px at 1280×720 with the replay
+closed to optional details; no internal overflow. Browser console errors were absent.
+Impeccable's final source detector flagged only the pre-existing Markdown blockquote
+border; retained as the conventional quote marker outside this change.
+Evidence: [three-step replay](evidence/claude-codex-replay.png),
+[simplified brief](evidence/simple-brief.png).
+
+Publication authorized on 2026-10-23 for the simplified brief and cross-provider replay.
+All 32 tests, Svelte diagnostics (zero errors/warnings), production build and whitespace
+checks passed again before committing. AI DevKit remains optional; the presentation
+replays recorded handoffs and launches no agents. Browser evidence above remains scoped
+to the implementation review; no additional device coverage is claimed for publication.

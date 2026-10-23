@@ -13,11 +13,11 @@ Fullscreen depends on the host.
 | Chapter | Interaction | Point to explain |
 | --- | --- | --- |
 | Baseline | Toggle Naive prompt / With intent | Both are generated illustrations, not a controlled model experiment. |
-| Understand | Explore collaboration | A proposed feature changes scope and the test burden. |
+| Understand | Read the short brief | One outcome: write, save and reopen a note. |
 | Guidance | Choose a chat role | Roles focus tasks; they do not require four agents. |
 | Context | Switch document tabs | Guidance, product decisions and current state have distinct owners. |
 | Methods | Choose a question | Match a method to the task and inspect available skills. |
-| Team | Choose one agent or subagents; explore roles and costs | Ask about delegation and reuse the preference. Distinguish estimates, credits and quota. |
+| Team | Replay Codex builds → Claude checks → Codex fixes | Findings go back to the implementer. AI DevKit is an optional way to pass the messages. |
 | Design | Choose Figma or generation; explore MCP/export and external-image fallbacks | Accept an existing reference or generate one, then review it before implementation. |
 | Write | Open Before building; compare browser-only vs sync needs, choose agent mode, then close and write | Explain and confirm technologies and team before building. |
 | Save | Save, switch notes, reopen, then use the reload check | Persistence and truthful status form a complete outcome. |
@@ -100,3 +100,17 @@ the added backend/authentication/database decision. Confirm or adjust recommenda
 with the user. Choose one agent or a small team; Explore roles and costs carries that
 selection to Team. Close the panel to return space to the same editor. Choices survive
 chapter changes and reload in this tab; they do not change the app stack or start agents.
+
+## Replay the cross-provider trial
+
+Team opens with the actual reading-list search trial. Select the three steps to see
+what each agent did and what was handed over. The final step names coordinator
+verification: ten tests, type checks/build and desktop/phone journeys. “What this trial
+proved” discloses that Claude's tool permissions blocked tests and that this was a
+guided trial. Its evidence link is pinned to the published trial record.
+
+AI DevKit carried messages; the coordinator relayed results and findings. Manual
+handoff remains possible. The replay starts no agents. Cost examples are in a separate
+view and are hypothetical; they do not measure the Claude/Codex trial's bill.
+The Understand chapter now stays with the brief; the collaboration exploration was
+removed because it distracted from the app we are building.
