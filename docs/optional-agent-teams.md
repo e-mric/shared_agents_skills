@@ -28,8 +28,10 @@ sequentially, or be handled by a person when the tool lacks subagents.
 | --- | --- |
 | Coordinator | Own scope, assign bounded tasks, integrate results and report evidence |
 | Planner | Resolve material uncertainty and define a reviewable plan |
+| Designer / asset creator | Produce the visual direction, reusable assets and implementation handoff |
 | Executor | Implement one accepted outcome and run the relevant checks |
 | Reviewer | Evaluate the final work against the spec and experience criteria |
+| Maintainer | Handle bounded documentation, triage and mechanical changes with verification |
 
 For short or dependent tasks, combine coordination and execution. Independent research
 or review may justify separate context. A planner reviewing its own plan is not a fully
@@ -44,6 +46,44 @@ Switching the coordinator's own model may require the user to change it in the h
 Never claim a model switch happened unless confirmed. Treat child-model overrides and
 context inheritance as host-specific capabilities. Do not alter global configuration
 or create user-owned chats merely to implement a team preference.
+
+### Optional Claude + Codex preset
+
+User-selected mapping, 2026-10-25. Use when both providers are available and the user
+chooses this team. These are replaceable assignments to portable roles, not required
+models or claims that this combination has been benchmarked end to end.
+
+| Portable role | Provider / model | Effort | Expected output |
+| --- | --- | --- | --- |
+| CTO / planner | Claude Code · Opus 5.5 | High | Scope, architecture decisions, technology recommendation and bounded tickets |
+| Designer / asset creator | Codex · GPT-6 Astra | High | Design proposal, approved reference, reusable assets and interaction states |
+| Engineer — most tickets | Codex · GPT-6.1 Sol | Medium | Working change and verification evidence |
+| Senior engineer — hard tickets | Codex · GPT-6.1 Sol | High | Resolution of difficult implementation, debugging or integration work |
+| Reviewer / QA | Claude Code · Opus 5.5 | High | Prioritized findings against acceptance criteria, code and rendered experience |
+| Maintainer — chores | Claude Code · Haiku 5.5 **or** Codex · GPT-6 Luna | Medium for Haiku; High for Luna | Focused docs, triage or rename changes with relevant checks |
+
+The planner can coordinate the handoffs. Engineer and senior engineer are execution
+tiers: start ordinary tickets at Medium and route hard tickets to High. Choose one
+available chores option per task. Separate planner and reviewer contexts even when
+they use the same model; the reviewer must assess the final evidence independently.
+
+Use Mobbin MCP for design references and Higgsfield MCP for assets when needed and
+available. Inspect the selected tool/skill instructions first. Verify image generation
+in the actual worker: desktop tools are not automatically available to a headless
+execution adapter. If unsupported, generate in a capable session or provide an
+external-tool prompt and ask the user to supply the result. Save accepted assets and
+their intended use in the project; implementation reads those files.
+
+Run **plan → design/assets → accepted direction → implement/test → review → fix →
+recheck**. For small tickets, reuse the existing plan/design. Give the reviewer the
+brief, exact revision/diff, approved visuals and checks; return actionable findings
+to the executor. After two unsuccessful fix rounds, bring the unresolved decision
+to the user. One writer per file remains the default.
+
+Verify model access, supported effort, tools and permissions before dispatch. Record
+the actual assignment and any agreed fallback; this preset does not silently change
+the current session, install MCP servers or create running agents. Estimate usage
+using the two cost views below, including asset generation and review/fix rounds.
 
 ## 3. Show two distinct cost views
 

@@ -164,8 +164,15 @@ At project setup, offer a single-agent or delegated workflow when relevant. Ask 
 for the user's preference, priorities and usage/spending limits, then reuse that choice.
 Keep role assignments model-agnostic and verify host capabilities before promising them.
 Use [optional agent teams and cost planning](docs/optional-agent-teams.md) for role
-boundaries, subscription/API estimates and a dated Codex example. Keep vendor-specific
-models and prices in that optional guide; delegation remains opt-in.
+boundaries, subscription/API estimates and the optional Claude + Codex preset. Keep
+vendor-specific models and prices in that optional guide; delegation remains opt-in.
+
+When a team is selected, route by responsibility: planner/CTO defines bounded tickets;
+designer/asset creator prepares the accepted direction; an engineer implements and
+tests; reviewer/QA checks the final work and returns findings to its implementer.
+Use a senior execution tier for hard tickets and a maintainer for bounded chores.
+Roles can share an agent or run sequentially. Preserve **design first → implement →
+review**, with shared files, exact revisions and explicit handoffs as context.
 
 Improve routing when recurring mistakes reveal a need. Create custom skills after a
 workflow proves repeatable; check existing capabilities before adding a plugin. Connect

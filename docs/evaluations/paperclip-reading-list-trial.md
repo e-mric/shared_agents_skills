@@ -56,6 +56,8 @@ global commands merely by installing Paperclip. Here, task briefs route the phas
 
 ## Settings for this trial
 
+These settings describe the completed two-agent trial, not the larger preset below.
+
 - Localhost only, embedded PostgreSQL, no startup service or global installation.
 - Separate Git worktree; the main checkout's pending presentation edits are excluded.
 - Local Claude/Codex CLI adapters use `engine: cli`; API keys are unset in the server.
@@ -73,6 +75,39 @@ stops are disabled for this trial:** a failed pre-provider bootstrap left a rece
 pending, and the accounting retry did not resolve it. These amounts are advisory,
 not a spending guarantee or a measure of remaining subscription quota. The bounded
 manual runs and timeouts control this trial; check provider usage separately.
+
+## Optional Claude + Codex setup for future projects
+
+Use the [role/model preset](../optional-agent-teams.md#optional-claude--codex-preset)
+when both providers are available. That table owns the exact models and efforts;
+Paperclip supplies the task board and dispatch. The shared role contracts remain
+usable with another provider or without Paperclip.
+
+1. **Planner / CTO:** write the brief, technology recommendation and ticket criteria.
+   Coordinate the handoffs; reuse existing decisions for small changes.
+2. **Designer / asset creator:** produce the design and necessary assets. Use Mobbin
+   MCP or Higgsfield MCP when needed and available. Verify tool access in the actual
+   worker; otherwise generate in a capable session and attach the saved files. Record
+   the user's accepted direction before implementation.
+3. **Engineer:** implement one ticket and run its checks. Route hard tickets to the
+   senior execution tier; keep one writer per file. Use the selected chores worker
+   for bounded docs, triage and renames.
+4. **Reviewer / QA:** use a separate context with the brief, accepted visuals, exact
+   revision/diff, screenshots and test evidence. Report reproducible findings and
+   distinguish checks actually run from supplied evidence.
+5. **Fix and recheck:** return findings to the implementer, then review the fixes.
+   After two unsuccessful rounds, bring the unresolved decision to the user. Record
+   the final disposition, check the task status after comments, and pause workers.
+
+Before enabling these assignments, verify each adapter's exact model/effort selection,
+authentication, workspace, tools and permissions. Keep timer heartbeats off for a
+manual workflow and record concurrency/run limits. Role definitions do not require
+all workers to run or exist simultaneously. Planner and reviewer can use the same
+model with separate task contexts. Neither role automatically inherits the other's
+conversation.
+
+This is a documented setup preference, not a live reconfiguration or a completed
+multi-role trial. The historical two-agent results and accounting limits still apply.
 
 ## Setup lessons
 
