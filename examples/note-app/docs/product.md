@@ -54,6 +54,8 @@ instructions and dated observations.
 - Replay the recorded Codex implementation → Claude review → Codex fixes trial,
   with coordinator verification and AI DevKit as an optional message adapter. Detailed
   evidence/limits are disclosed on request; the replay launches no agents.
+- Present portable role handoffs with an optional Claude + Codex example; disclose
+  senior engineering, chores and design tools on request. Paperclip remains optional.
 - Explore illustrative team assignments and dated cost assumptions without starting
   agents, switching models or predicting included subscription quota.
 - Accounts, collaboration, a WYSIWYG editor, live voice transcription and device sync
@@ -164,6 +166,11 @@ Additional acceptance criteria:
 22. Show a disabled voice-to-text placeholder, with its coming-soon state in the
     visible label and full accessible name. Do not
     record audio, request microphone access or call a transcription service.
+
+23. Team defaults to a concise Plan → Design → Build → Review example, showing the
+    selected role's suggested model, output and handoff. Review can return findings
+    to Build. Other roles/tools, the recorded trial and separate Codex-only costs
+    are optional views; no control dispatches work or changes runtime configuration.
 
 Earlier builder choices of a dependency-free server and a normal app-first screen
 are superseded by the explicit SvelteKit and interactive presentation requests.

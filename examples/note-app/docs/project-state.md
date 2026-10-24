@@ -352,3 +352,44 @@ All 32 tests, Svelte diagnostics (zero errors/warnings), production build and wh
 checks passed again before committing. AI DevKit remains optional; the presentation
 replays recorded handoffs and launches no agents. Browser evidence above remains scoped
 to the implementation review; no additional device coverage is claimed for publication.
+
+## Final Impeccable readability review · 2026-10-24
+
+Reviewed every chapter for one clear message and a manageable amount of text.
+Shortened rules, roles, skill explanations, the brief and design-source guidance.
+Methods is now labelled Skills, with a plain definition. Compact static panels and
+a bounded baseline image height remove default static-panel overflow at 1280×720.
+The twelve chapter indices, live editor, storage, recovery and optional adapter remain.
+
+The [updated information-fatigue audit](design/information-fatigue.md#final-readability-pass--2026-10-24)
+records per-chapter findings, matched word counts, screenshots and limits. Default
+static canvas copy decreased about 19%; no claim is made about audience comprehension.
+All 32 tests, Svelte checks, production build and whitespace checks passed. Browser
+coverage: all chapters at desktop/phone widths plus four tablet chapters; no horizontal
+phone/tablet overflow, exact editor preservation and no console errors. No physical-device
+or screen-reader study was performed. The detector's sole warning was the existing
+Markdown quote border, retained. Changes remain uncommitted and unpushed.
+
+## Optional role handoffs · 2026-10-25
+
+Team now opens on Plan → Design → Build → Review. Each selection shows one portable
+role, the suggested Claude/Codex model and the artifact passed to the next role.
+Review returns findings to Build. Senior engineering, both chores options and optional
+Mobbin/Higgsfield tools are disclosed on request. Paperclip and AI DevKit remain
+optional; the recorded trial and separate Codex-only cost examples are secondary views.
+The presentation does not launch agents, switch models or claim this preset was trialled.
+
+Verification: all 32 tests, Svelte diagnostics (zero errors/warnings), production build
+and whitespace checks passed. Browser checks exercised all four role selections,
+keyboard Enter on Return findings, the additional model/tool details, trial replay and
+cost examples. The closed-details Plan and Review views fit the desktop canvas without
+internal overflow at 1280×720. Phone 390×844 and tablet 820×1180 had no horizontal page
+overflow; role buttons measured at least 44px high. An existing editor title/body stayed
+exact through the Write → Team → Write round trip; no notes were edited or saved.
+No browser console errors appeared. No physical-device or screen-reader check is claimed.
+Impeccable's detector found only the existing Markdown blockquote border, intentionally
+retained as a quote marker. Evidence: [desktop](evidence/team-roles-desktop.png) and
+[phone](evidence/team-roles-mobile.png).
+
+This publication includes the previously pending final readability refinements and
+screenshots recorded above, alongside the optional role handoff view.

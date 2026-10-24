@@ -16,8 +16,8 @@ Fullscreen depends on the host.
 | Understand | Read the short brief | One outcome: write, save and reopen a note. |
 | Guidance | Choose a chat role | Roles focus tasks; they do not require four agents. |
 | Context | Switch document tabs | Guidance, product decisions and current state have distinct owners. |
-| Methods | Choose a question | Match a method to the task and inspect available skills. |
-| Team | Replay Codex builds → Claude checks → Codex fixes | Findings go back to the implementer. AI DevKit is an optional way to pass the messages. |
+| Skills | Choose a question | Skills are reusable instructions; choose only what the task needs. |
+| Team | Select Plan → Design → Build → Review, then return findings to Build | Roles are portable; Claude + Codex is one suggested setup. |
 | Design | Choose Figma or generation; explore MCP/export and external-image fallbacks | Accept an existing reference or generate one, then review it before implementation. |
 | Write | Open Before building; compare browser-only vs sync needs, choose agent mode, then close and write | Explain and confirm technologies and team before building. |
 | Save | Save, switch notes, reopen, then use the reload check | Persistence and truthful status form a complete outcome. |
@@ -103,7 +103,7 @@ chapter changes and reload in this tab; they do not change the app stack or star
 
 ## Replay the cross-provider trial
 
-Team opens with the actual reading-list search trial. Select the three steps to see
+Under Team, choose Trial replay to revisit the actual reading-list search trial. Select the three steps to see
 what each agent did and what was handed over. The final step names coordinator
 verification: ten tests, type checks/build and desktop/phone journeys. “What this trial
 proved” discloses that Claude's tool permissions blocked tests and that this was a
@@ -114,3 +114,17 @@ handoff remains possible. The replay starts no agents. Cost examples are in a se
 view and are hypothetical; they do not measure the Claude/Codex trial's bill.
 The Understand chapter now stays with the brief; the collaboration exploration was
 removed because it distracted from the app we are building.
+
+## Optional Claude + Codex role example
+
+Team opens on Roles. Select Plan, Design, Build and Review to reveal one suggested
+model, its task and its handoff. Review's Return findings to Build demonstrates the
+fix loop. Roles work with other agents; this is a proposed setup, not another live trial.
+
+Open Hard tickets, chores & design tools for the senior engineer, both chores choices,
+and optional Mobbin/Higgsfield tools. Paperclip and AI DevKit are optional adapters.
+The [shared preset](../../../docs/optional-agent-teams.md#optional-claude--codex-preset)
+owns the full role contract. Tool and model access still need a real worker preflight.
+
+Cost examples are explicitly separate Codex-only calculations. They do not price
+the mixed-provider preset. All teaching controls remain local and start no agents.

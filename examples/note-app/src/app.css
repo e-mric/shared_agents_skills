@@ -291,3 +291,25 @@
 @media(max-width:600px) { .trial-steps { flex-direction: column; align-items: stretch; } .trial-detail { min-height: 0; } }
 
 .team-example .canvas-top { padding-top: 8px; padding-bottom: 8px; }
+
+/* Final readability pass: short explanations and compact static teaching panels. */
+.guidance-example, .methods-example { padding: 26px 6%; justify-content: flex-start; }
+.guidance-example h2, .methods-example h2 { font-size: 34px; margin-bottom: 18px; }
+.guidance-example pre { line-height: 1.7; }
+.guidance-example .role-label { font-size: 14px; font-weight: 600; letter-spacing: 0; margin: 20px 0 8px!important; }
+.guidance-example .roles button { min-height: 44px; font-size: 14px; }
+.guidance-example .role-copy { min-height: 0; margin: 12px 0 0; font-size: 14px; }
+.guidance-example .canvas-caption, .methods-example .canvas-caption { font-size: 12px; line-height: 1.6; margin-top: 14px; }
+.methods-example .method-options { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.methods-example .method-options>button { width: auto; min-height: 44px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 5px; font-size: 14px; }
+.methods-example .method-options>button.active { background: var(--paper); }
+.methods-example .method-result { margin-top: 20px; }
+.methods-example .method-result h3 { font-size: 28px; margin: 0 0 10px; }
+.methods-example .method-result p { font-size: 14px; margin: 0; }
+.handoff-example { padding-top: 26px; padding-bottom: 26px; }
+.handoff-example h2 { font-size: 34px; margin-bottom: 16px; }
+.handoff-example .eyebrow { margin-bottom: 14px; }
+.handoff-example .evidence-lines { margin: 0; }
+.handoff-example .evidence-lines>div { padding: 12px 0; }
+@media(min-width:961px) { .comparison-image { min-height: 0; } .comparison-image img { max-height: min(560px,calc(100svh - 400px)); } }
+@media(max-width:600px) { .guidance-example, .methods-example { padding: 24px 20px; } }
