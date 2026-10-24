@@ -11,6 +11,10 @@ Accepted structure, 2026-10-22:
 The core works without either tool. Choosing execution does not enable tracking.
 Cloning this repository installs neither. No third-party skills are vendored here.
 
+A separate [Paperclip reading-list trial and usage guide](evaluations/paperclip-reading-list-trial.md)
+checks manual Codex → Claude review through a local task board. It is an optional
+alternative under evaluation, not a requirement or a change to the portable core.
+
 ## AI DevKit evaluation decision
 
 **Reuse the phase contracts and fresh verification discipline; keep the runtime optional.**
