@@ -393,3 +393,18 @@ retained as a quote marker. Evidence: [desktop](evidence/team-roles-desktop.png)
 
 This publication includes the previously pending final readability refinements and
 screenshots recorded above, alongside the optional role handoff view.
+
+## Team Impeccable review · 2026-10-25
+
+The [scoped review](design/team-impeccable-review.md) found two minor issues and one
+copy refinement: keyboard focus was lost on returning findings; the mobile view
+switcher took 117px and had a narrow Roles target; Review did not explicitly mention
+rechecking fixes. Focus now returns to Build, the phone switcher is 61px with controls
+at least 44×44px, and the review loop is explicit. Existing design and optional models
+remain; no actual agents or account settings change.
+
+All 32 tests, Svelte diagnostics, build and whitespace checks passed. Browser checks
+covered 1280×720, 820×1180, 390×844 and 320×740, keyboard return, role messages and exact
+editor preservation. No page overflow or console errors observed. Assistive technology,
+real touch/devices and browser zoom remain untested. Publication of these refinements
+and review evidence was authorized on 2026-10-25.

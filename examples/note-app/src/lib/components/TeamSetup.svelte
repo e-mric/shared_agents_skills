@@ -1,10 +1,11 @@
 <script lang="ts">
   let selected = $state(0);
+  const roleButtons: HTMLButtonElement[] = [];
   const roles = [
-    { role: 'Plan', owner: 'CTO / planner', model: 'Claude · Opus 5.5 High', action: 'Turn the goal into small, clear tickets.', handoff: 'To Design: brief, constraints and acceptance criteria.' },
+    { role: 'Plan', owner: 'CTO / planner', model: 'Claude · Opus 5.5 High', action: 'Turn the goal into small, clear tasks.', handoff: 'To Design: goal, constraints and success criteria.' },
     { role: 'Design', owner: 'Designer / asset creator', model: 'Codex · Astra High', action: 'Propose the design and create reusable assets.', handoff: 'To Build: accepted design, asset files and interaction states.' },
     { role: 'Build', owner: 'Engineer', model: 'Codex · GPT-6.1 Sol Medium', action: 'Implement one ticket. Run checks and capture the result.', handoff: 'To Review: exact code changes, screenshots and test results.' },
-    { role: 'Review', owner: 'Reviewer / QA', model: 'Claude · Opus 5.5 High', action: 'Check the result against the brief and design.', handoff: 'Back to Build: findings and steps to reproduce. Then recheck the fixes.' },
+    { role: 'Review', owner: 'Reviewer / QA', model: 'Claude · Opus 5.5 High', action: 'Check against the brief. Report issues, then recheck fixes.', handoff: 'Back to Build: findings and steps to reproduce. Then recheck the fixes.' },
   ];
   const current = $derived(roles[selected]);
 </script>
@@ -14,7 +15,7 @@
   <p class="intro">One possible team. The roles work with other agents, too.</p>
   <nav class="role-flow" aria-label="Explore role handoffs">
     {#each roles as item, i}
-      <button aria-pressed={selected === i} aria-controls="role-handoff" onclick={() => { selected = i; }}>
+      <button bind:this={roleButtons[i]} aria-pressed={selected === i} aria-controls="role-handoff" onclick={() => { selected = i; }}>
         <span>{i + 1}. {item.role}</span>
       </button>
     {/each}
@@ -24,7 +25,7 @@
     <p>{current.action}</p>
     {#if selected !== 3}<p class="handoff">{current.handoff}</p>{/if}
     {#if selected === 3}
-      <button class="return-findings" onclick={() => { selected = 2; }}>Return findings to Build</button>
+      <button class="return-findings" onclick={() => { selected = 2; roleButtons[2]?.focus(); }}>Return findings to Build</button>
     {/if}
   </div>
   <details>
