@@ -84,17 +84,22 @@ Paperclip supplies the task board and dispatch. The shared role contracts remain
 usable with another provider or without Paperclip.
 
 1. **Planner / CTO:** write the brief, technology recommendation and ticket criteria.
-   Coordinate the handoffs; reuse existing decisions for small changes.
+   Define how each criterion will be verified and the important failure cases before
+   implementation. Coordinate the handoffs; reuse existing decisions for small changes.
 2. **Designer / asset creator:** produce the design and necessary assets. Use Mobbin
    MCP or Higgsfield MCP when needed and available. Verify tool access in the actual
    worker; otherwise generate in a capable session and attach the saved files. Record
-   the user's accepted direction before implementation.
-3. **Engineer:** implement one ticket and run its checks. Route hard tickets to the
-   senior execution tier; keep one writer per file. Use the selected chores worker
+   the user's accepted direction, including empty/loading/error/recovery/mobile states,
+   before implementation.
+3. **Engineer:** for bugs and important rules, demonstrate the relevant failure with
+   a focused test where feasible; implement one ticket and run its checks. Route hard
+   tickets to the senior execution tier; keep one writer per file. Use the selected chores worker
    for bounded docs, triage and renames.
 4. **Reviewer / QA:** use a separate context with the brief, accepted visuals, exact
    revision/diff, screenshots and test evidence. Report reproducible findings and
-   distinguish checks actually run from supplied evidence.
+   distinguish checks actually run from supplied evidence. Inspect the assertions and
+   missing cases: do these tests establish the promised behavior? Check the complete
+   journey; passing tests alone do not establish completion.
 5. **Fix and recheck:** return findings to the implementer, then review the fixes.
    After two unsuccessful rounds, bring the unresolved decision to the user. Record
    the final disposition, check the task status after comments, and pause workers.
@@ -108,6 +113,10 @@ conversation.
 
 This is a documented setup preference, not a live reconfiguration or a completed
 multi-role trial. The historical two-agent results and accounting limits still apply.
+
+For example, a search ticket can specify **searching never changes saved books**.
+Verify both filtering behavior and storage writes, then exercise the browser journey.
+Scale testing to the change; this does not require TDD for every visual or docs edit.
 
 ## Setup lessons
 

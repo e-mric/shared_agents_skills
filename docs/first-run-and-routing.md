@@ -25,7 +25,7 @@ Use it when setting up a project or introducing the workflow to a new user.
 | Keyword | Responsibility | Required context | Completion |
 | --- | --- | --- | --- |
 | Imagine | Product/design | User problem, constraints, references and current app | Accepted brief, design direction and observable criteria |
-| Implement | Implementation | Accepted brief/design, selected technologies, execution preference, source, status and criteria | Working diff with verification evidence |
+| Implement | Implementation | Accepted brief/design, selected technologies, execution preference, source, status, criteria and verification plan | Working diff with verification evidence |
 | Test | Testing | Exact revision/build, criteria, journey and demo data | Pass/fail/inconclusive results with reproduction and limits |
 | Review | Reviewer | Brief/design, diff, test results and remaining uncertainty | Prioritized findings or scoped acceptance; route fixes back |
 | Doc | The role owning the topic | Current authoritative document and verified change | Updated owning document, with uncertainty preserved |
@@ -66,7 +66,7 @@ Keep rules in `AGENTS.md`, navigation in `docs/index.md`, accepted requirements/
 in their owning pages, and current progress/evidence in `docs/project-state.md`.
 The destination reads only relevant material and inspects current source/status.
 
-Send a bounded task packet: **goal, role, project/revision, context paths, criteria,
+Send a bounded task packet: **goal, role, project/revision, context paths, criteria and planned checks,
 allowed edits, expected output and verification limits**. Include the accepted skill
 and delegation preferences. Verify the destination identity and project before sending;
 record actual receipt/result rather than assuming delivery.

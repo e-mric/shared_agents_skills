@@ -55,17 +55,21 @@ models or claims that this combination has been benchmarked end to end.
 
 | Portable role | Provider / model | Effort | Expected output |
 | --- | --- | --- | --- |
-| CTO / planner | Claude Code · Opus 5.5 | High | Scope, architecture decisions, technology recommendation and bounded tickets |
-| Designer / asset creator | Codex · GPT-6 Astra | High | Design proposal, approved reference, reusable assets and interaction states |
-| Engineer — most tickets | Codex · GPT-6.1 Sol | Medium | Working change and verification evidence |
+| CTO / planner | Claude Code · Opus 5.5 | High | Scope, architecture, technologies and tickets with success criteria, failure cases and verification plan |
+| Designer / asset creator | Codex · GPT-6 Astra | High | Design proposal, approved reference, reusable assets and loading/error/recovery/mobile states |
+| Engineer — most tickets | Codex · GPT-6.1 Sol | Medium | Working change and evidence; demonstrate the failure first for bugs and important rules where feasible |
 | Senior engineer — hard tickets | Codex · GPT-6.1 Sol | High | Resolution of difficult implementation, debugging or integration work |
-| Reviewer / QA | Claude Code · Opus 5.5 | High | Prioritized findings against acceptance criteria, code and rendered experience |
+| Reviewer / QA | Claude Code · Opus 5.5 | High | Check whether tests prove the criteria; inspect missing cases, code and the complete user journey |
 | Maintainer — chores | Claude Code · Haiku 5.5 **or** Codex · GPT-6 Luna | Medium for Haiku; High for Luna | Focused docs, triage or rename changes with relevant checks |
 
 The planner can coordinate the handoffs. Engineer and senior engineer are execution
 tiers: start ordinary tickets at Medium and route hard tickets to High. Choose one
 available chores option per task. Separate planner and reviewer contexts even when
 they use the same model; the reviewer must assess the final evidence independently.
+Follow [proof before implementation](../PROJECT_DEVELOPMENT_WORKFLOW.md#define-proof-before-implementation):
+the planner defines evidence, the engineer produces it, and QA challenges its adequacy.
+Tests, source review and rendered checks complement one another; use proportionate
+verification for chores and visual exploration.
 
 Use Mobbin MCP for design references and Higgsfield MCP for assets when needed and
 available. Inspect the selected tool/skill instructions first. Verify image generation

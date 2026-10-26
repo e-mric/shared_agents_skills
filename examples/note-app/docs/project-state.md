@@ -408,3 +408,25 @@ covered 1280×720, 820×1180, 390×844 and 320×740, keyboard return, role messa
 editor preservation. No page overflow or console errors observed. Assistive technology,
 real touch/devices and browser zoom remain untested. Publication of these refinements
 and review evidence was authorized on 2026-10-25.
+
+## Define proof before implementation · 2026-10-26
+
+Adopted the user's decision to define success criteria, important failure cases and
+verification before implementation. The shared workflow, routing packet, optional
+role preset and Paperclip guide now assign evidence planning to the planner, evidence
+production to the engineer, and test-adequacy review to QA. Test-first work applies
+proportionately to bugs and important rules, alongside source and rendered review.
+This does not make tests exhaustive or require TDD for every visual/docs edit.
+
+The Team view uses the same four short messages: Plan defines verification; Design
+includes failure states; Build demonstrates failing bug tests; Review challenges what
+tests prove and tries the journey. No runtime setup or stored notes changed.
+
+All 32 tests, Svelte checks (zero errors/warnings), production build, whitespace and
+new proof-section link/anchor checks passed. Browser: each role fit the closed desktop
+canvas at 1280×720 (468px client/scroll height); 390×844 had no horizontal page overflow
+and role buttons were at least 44px high. Keyboard return focused Build. No console
+errors appeared; no physical-device or assistive-technology testing was performed.
+The scoped Impeccable source detector returned no findings. Evidence:
+[desktop](evidence/proof-first-team-desktop.png), [phone](evidence/proof-first-team-mobile.png).
+Publication of these proof-before-implementation updates was authorized on 2026-10-26.

@@ -121,6 +121,10 @@ Team opens on Roles. Select Plan, Design, Build and Review to reveal one suggest
 model, its task and its handoff. Review's Return findings to Build demonstrates the
 fix loop. Roles work with other agents; this is a proposed setup, not another live trial.
 
+Plan defines success and its checks before Build. For bugs, demonstrate the failure
+with a focused test first. Review asks what the tests prove and tries the whole journey;
+passing tests alone do not establish completion. Visual and docs edits use proportionate checks.
+
 Open Hard tickets, chores & design tools for the senior engineer, both chores choices,
 and optional Mobbin/Higgsfield tools. Paperclip and AI DevKit are optional adapters.
 The [shared preset](../../../docs/optional-agent-teams.md#optional-claude--codex-preset)

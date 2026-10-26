@@ -236,10 +236,29 @@ Technical checks and experience review both contribute to completion; a polished
 alone is insufficient evidence. Keep exploration patient and flexible while preserving
 engineering checks and accepted constraints.
 
-Test meaningful business rules, application decisions, infrastructure contracts,
-integration wiring and user journeys where affected. Add regression coverage for bugs.
-Avoid tests that only mirror implementation; control time and external dependencies
-when deterministic checks require it.
+### Define proof before implementation
+
+For each meaningful change, pair observable success criteria with the checks that
+will establish them. Include important failure cases. Base expected results on the
+accepted requirements, independently of the implementation being tested.
+
+For bugs and important business rules, prefer a focused regression test before the
+implementation change. Confirm it fails for the intended reason, then implement and
+rerun it. Record when reproducing the failure is not feasible. Visual exploration
+also needs rendered review and complete user journeys; a concept image is not a
+behavioral test. Small copy or documentation edits need proportionate checks.
+
+Test meaningful application decisions, infrastructure contracts, integration wiring
+and affected user journeys. Avoid tests that only mirror implementation; control time
+and external dependencies when deterministic checks require it. Scale failure
+simulation and security checks to the affected risks and authorized environment.
+
+The reviewer checks test adequacy as well as results: do assertions establish each
+promised behavior, cover material failures and detect the relevant regression?
+Challenge missing cases and misleading mocks. Passing tests prove only what they
+exercise; retain source review, maintainability checks and experience review.
+Explain changes to expected behavior or checks against the accepted requirements
+rather than weakening tests merely to obtain a passing result.
 
 Document one appropriate integration command and focused commands. Reuse the project's
 build tools. Configure CI to run relevant checks when applicable, clearly recording
@@ -303,7 +322,8 @@ feature/fix] against [spec/ticket] in [branch/worktree]. Inspect status and pres
 unrelated work. Establish constraints, acceptance criteria, checkpoints and checks.
 Before starting, follow the technology recommendation and single-agent/subagent choice
 in docs/first-run-and-routing.md#before-implementation; reuse recorded decisions.
-Keep architecture/dependencies coherent; test meaningful behaviour and regressions.
+Keep architecture/dependencies coherent. Follow "Define proof before implementation":
+use criteria-led checks and demonstrate relevant failures first where feasible.
 For UI changes, implement against the selected design and carry accepted intent through
 the complete flow and recovery states. Compare the rendered result with that reference;
 revisit the design when the evidence reveals a gap, then implement and review again.
@@ -322,6 +342,8 @@ user data. Record reproducible steps, expected/observed behaviour, severity, evi
 and pass/fail/inconclusive per criterion. Check feedback, next steps, undo where appropriate
 and consistency across the full task, including affected failure and accessibility paths. Safely
 simulate interruptions with test data to check work preservation and recovery.
+Where test sources are available, check whether their assertions establish the criteria
+and cover material failures; distinguish coverage gaps from demonstrated product defects.
 Distinguish mocked, sandbox, live and participant evidence; identify
 checks requiring a human, device or external access. File actionable findings and update
 the testing handoff. Done when each criterion has a scoped result or explicit gap.

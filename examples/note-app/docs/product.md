@@ -168,7 +168,8 @@ Additional acceptance criteria:
     record audio, request microphone access or call a transcription service.
 
 23. Team defaults to a concise Plan → Design → Build → Review example, showing the
-    selected role's suggested model, output and handoff. Review can return findings
+    selected role's suggested model, output and handoff. Plan defines checks before
+    implementation; Review checks what tests prove. Review can return findings
     to Build. Other roles/tools, the recorded trial and separate Codex-only costs
     are optional views; no control dispatches work or changes runtime configuration.
 

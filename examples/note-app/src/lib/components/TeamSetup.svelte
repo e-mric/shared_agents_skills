@@ -2,10 +2,10 @@
   let selected = $state(0);
   const roleButtons: HTMLButtonElement[] = [];
   const roles = [
-    { role: 'Plan', owner: 'CTO / planner', model: 'Claude · Opus 5.5 High', action: 'Turn the goal into small, clear tasks.', handoff: 'To Design: goal, constraints and success criteria.' },
-    { role: 'Design', owner: 'Designer / asset creator', model: 'Codex · Astra High', action: 'Propose the design and create reusable assets.', handoff: 'To Build: accepted design, asset files and interaction states.' },
-    { role: 'Build', owner: 'Engineer', model: 'Codex · GPT-6.1 Sol Medium', action: 'Implement one ticket. Run checks and capture the result.', handoff: 'To Review: exact code changes, screenshots and test results.' },
-    { role: 'Review', owner: 'Reviewer / QA', model: 'Claude · Opus 5.5 High', action: 'Check against the brief. Report issues, then recheck fixes.', handoff: 'Back to Build: findings and steps to reproduce. Then recheck the fixes.' },
+    { role: 'Plan', owner: 'CTO / planner', model: 'Claude · Opus 5.5 High', action: 'Define success and how we will verify it.', handoff: 'To Design: goal, constraints, checks and failure cases.' },
+    { role: 'Design', owner: 'Designer / asset creator', model: 'Codex · Astra High', action: 'Propose the design, reusable assets and failure states.', handoff: 'To Build: accepted design, asset files and interaction states.' },
+    { role: 'Build', owner: 'Engineer', model: 'Codex · GPT-6.1 Sol Medium', action: 'For bugs, show the failing test first. Then implement.', handoff: 'To Review: exact code changes, screenshots and test evidence.' },
+    { role: 'Review', owner: 'Reviewer / QA', model: 'Claude · Opus 5.5 High', action: 'Check what tests prove. Try the journey. Recheck fixes.', handoff: 'Back to Build: findings and steps to reproduce. Then recheck the fixes.' },
   ];
   const current = $derived(roles[selected]);
 </script>
